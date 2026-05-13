@@ -19,7 +19,7 @@
  * Scenario size (km x km)
  * and its specification
  */
-#define SCENARIO_SIZE 30
+#define SCENARIO_SIZE 30.0f
 
 /*
  * Run configuration. These values are set in the TCL scripts.
@@ -58,10 +58,10 @@ static int displacements[CONTIGUOUS_CELLS][2] = {
  * Utils: Macro-functions to transform coordinates, from scenario to matrix cells, and back
  * 	These macro-functions can be changed and/or optimized by the students
  */
-#define COORD_SCEN2MAT_X(x) (x * NCOLS / SCENARIO_SIZE)
-#define COORD_SCEN2MAT_Y(y) (y * NROWS / SCENARIO_SIZE)
-#define COORD_MAT2SCEN_X(c) (c * SCENARIO_SIZE / NCOLS)
-#define COORD_MAT2SCEN_Y(r) (r * SCENARIO_SIZE / NROWS)
+#define COORD_SCEN2MAT_X(x) (x * (float)NCOLS / (float)SCENARIO_SIZE)
+#define COORD_SCEN2MAT_Y(y) (y * (float)NROWS / (float)SCENARIO_SIZE)
+#define COORD_MAT2SCEN_X(c) (c * (float)SCENARIO_SIZE / (float)NCOLS)
+#define COORD_MAT2SCEN_Y(r) (r * (float)SCENARIO_SIZE / (float)NROWS)
 
 /*
  * Utils: Macro functions for the min and max of two numbers
@@ -93,12 +93,20 @@ typedef struct {
 } Cloud_t;
 
 struct parameters {
-    float *ground;
+    float ground[NROWS][NCOLS];
     float threshold;
     int num_minutes;
     float ex_factor;
-    Cloud_t *clouds;
+    Cloud_t clouds[NCLOUDS];
 };
+
+// struct parameters {
+//     float *ground;
+//     float threshold;
+//     int num_minutes;
+//     float ex_factor;
+//     Cloud_t *clouds;
+// };
 
 struct results {
     int minute;

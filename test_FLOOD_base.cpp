@@ -246,8 +246,18 @@ int main(int argc, char *argv[]) {
     assert(arg_clouds == NCLOUDS);
 
     // Set input parameters
-    p.ground = ground;
-    p.clouds = clouds;
+    // p.ground = ground;
+    // p.clouds = clouds;
+
+    for (int i = 0; i < NROWS; i++) {
+        for (int j = 0; j < NCOLS; j++) {
+            p.ground[i][j] = accessMat(ground, i, j);
+        }
+    }
+
+    for (int c = 0; c < NCLOUDS; c++) {
+        p.clouds[c] = clouds[c];
+    }
 
     struct results r = {.minute = 0,
                         .max_water_scenario = 0.0,
