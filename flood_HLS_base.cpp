@@ -104,36 +104,7 @@ void do_compute(struct parameters *p, struct results *r) {
                 }
             }
         }
-
-        // /* Rainfall */
-        // for (int cloud = 0; cloud < NCLOUDS; cloud++) {
-        //     float row_start = COORD_SCEN2MAT_Y(MAX(0.0f, p->clouds[cloud].y - p->clouds[cloud].radius));
-        //     float row_end = COORD_SCEN2MAT_Y(MIN(p->clouds[cloud].y + p->clouds[cloud].radius, 30.0f));
-        //     float col_start = COORD_SCEN2MAT_X(MAX(0.0f, p->clouds[cloud].x - p->clouds[cloud].radius));
-        //     float col_end = COORD_SCEN2MAT_X(MIN(p->clouds[cloud].x + p->clouds[cloud].radius, 30.0f));
-        //
-        //     // Reference uses float iterators: match them exactly
-        //     for (float r_pos = row_start; r_pos < row_end; r_pos++) {
-        //         for (float c_pos = col_start; c_pos < col_end; c_pos++) {
-        //             int i = (int)r_pos;
-        //             int j = (int)c_pos;
-        //
-        //             float x_pos = COORD_MAT2SCEN_X(c_pos);
-        //             float y_pos = COORD_MAT2SCEN_Y(r_pos);
-        //
-        //             // Use pow() and sqrt() to match reference math precision
-        //             float distance = sqrt(pow(x_pos - p->clouds[cloud].x, 2) + pow(y_pos - p->clouds[cloud].y, 2));
-        //
-        //             if (distance < p->clouds[cloud].radius) {
-        //                 float rain = p->ex_factor * MAX(0.0f, p->clouds[cloud].intensity - distance / p->clouds[cloud].radius * sqrt(p->clouds[cloud].intensity));
-        //                 float meters_per_minute = rain / 1000.0f / 60.0f;
-        //
-        //                 water_level[i][j] += FIXED(meters_per_minute);
-        //                 r->total_rain += FIXED(meters_per_minute);
-        //             }
-        //         }
-        //     }
-        // }
+        
         /* Step 2: Compute water spillage to neighbor cells */
         for (row_pos = 0; row_pos < NROWS; row_pos++) {
             for (col_pos = 0; col_pos < NCOLS; col_pos++) {
