@@ -36,6 +36,8 @@ void do_compute(struct parameters *p, struct results *r) {
     float spillage_level[NROWS][NCOLS];
     float spillage_from_neigh[NROWS][NCOLS][CONTIGUOUS_CELLS];
 
+#pragma HLS ARRAY_PARTITION variable=spillage_from_neigh complete dim=3
+
     /* Initialization */
     /* 3.1. Memory allocation */
     // water_level = (int *)malloc(sizeof(int) * (size_t)NROWS * (size_t)NCOLS);
@@ -187,33 +189,48 @@ void do_compute(struct parameters *p, struct results *r) {
 
         /* Step 3: Propagation of previously computer water spillage to/from neighbors */
         max_spillage_iter = 0.0;
+        PROPAGATION_ROWS:
         for (row_pos = 0; row_pos < NROWS; row_pos++) {
+            PROPAGATION_COLS:
             for (col_pos = 0; col_pos < NCOLS; col_pos++) {
+
+#pragma HLS PIPELINE II=1
+                //local copy to avoid dependencies
+                int wl = water_level[row_pos][col_pos];
+
                 // If the cell has spillage
                 if (spillage_flag[row_pos][col_pos] == 1) {
 
-                    // Eliminate the spillage from the origin cell
-                    water_level[row_pos][col_pos] -=
-                        FIXED(spillage_level[row_pos][col_pos] / SPILLAGE_FACTOR);
+                    //local calculation
+                    float spill = spillage_level[row_pos][col_pos] / SPILLAGE_FACTOR;
+                    int fixed_spill = FIXED(spill);
+                    wl -= fixed_spill;
 
                     // Compute termination condition: Maximum cell spillage during the iteration
-                    if (spillage_level[row_pos][col_pos] / SPILLAGE_FACTOR > max_spillage_iter) {
-                        max_spillage_iter = spillage_level[row_pos][col_pos] / SPILLAGE_FACTOR;
+                    if (spill > max_spillage_iter) {
+                        max_spillage_iter = spill;
                     }
                     // Statistics: Record maximum cell spillage during the scenario and its time
-                    if (spillage_level[row_pos][col_pos] / SPILLAGE_FACTOR > r->max_spillage_scenario) {
-                        r->max_spillage_scenario = spillage_level[row_pos][col_pos] / SPILLAGE_FACTOR;
+                    if (spill > r->max_spillage_scenario) {
+                        r->max_spillage_scenario = spill;
                         r->max_spillage_minute = r->minute;
                     }
                 }
 
+                int spill_acc = 0;
+
                 // Accumulate spillage from neighbors
+                NEIGHBOR_ACCUM:
                 for (cell_pos = 0; cell_pos < CONTIGUOUS_CELLS; cell_pos++) {
-                    int depths = CONTIGUOUS_CELLS;
-                    water_level[row_pos][col_pos] +=
-                        // FIXED(accessMat3D(spillage_from_neigh, row_pos, col_pos, cell_pos) / SPILLAGE_FACTOR);
-                        FIXED(spillage_from_neigh[row_pos][col_pos][cell_pos] / SPILLAGE_FACTOR);
+#pragma HLS UNROLL
+                    spill_acc += FIXED(spillage_from_neigh[row_pos][col_pos][cell_pos] / SPILLAGE_FACTOR);
                 }
+
+                // Apply accumulated incoming spill
+                wl += spill_acc;
+
+                // Write back final water level
+                water_level[row_pos][col_pos] = wl;
             }
         }
 
