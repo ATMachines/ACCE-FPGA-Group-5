@@ -37,6 +37,7 @@ void do_compute(struct parameters *p, struct results *r) {
     float spillage_from_neigh[NROWS][NCOLS][CONTIGUOUS_CELLS];
 
 #pragma HLS ARRAY_PARTITION variable=spillage_from_neigh complete dim=3
+#pragma HLS array_partition variable=water_level complete dim=2
 
     /* Initialization */
     /* 3.1. Memory allocation */
