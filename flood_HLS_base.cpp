@@ -108,6 +108,7 @@ void do_compute(struct parameters *p, struct results *r) {
         /* Step 2: Compute water spillage to neighbor cells */
         for (row_pos = 0; row_pos < NROWS; row_pos++) {
             for (col_pos = 0; col_pos < NCOLS; col_pos++) {
+                #pragma HLS PIPELINE II=1
                 if (water_level[row_pos][col_pos] > 0) {
                     float sum_diff = 0;
                     float my_spillage_level = 0;
@@ -153,6 +154,7 @@ void do_compute(struct parameters *p, struct results *r) {
                             spillage_level[row_pos][col_pos] = my_spillage_level;
 
                             // Iterate over the four neighboring cells using the displacement array
+                            #pragma HLS UNROLL
                             for (cell_pos = 0; cell_pos < 4; cell_pos++) {
                                 new_row = row_pos + displacements[cell_pos][0];
                                 new_col = col_pos + displacements[cell_pos][1];
