@@ -95,7 +95,7 @@ void do_compute(struct parameters *p, struct results *r) {
                 }
             }
         }
-
+"""
         /* Step 2: Compute water spillage to neighbor cells */
         for (row_pos = 0; row_pos < NROWS; row_pos++) {
             for (col_pos = 0; col_pos < NCOLS; col_pos++) {
@@ -163,6 +163,89 @@ void do_compute(struct parameters *p, struct results *r) {
                                         int depths = CONTIGUOUS_CELLS;
                                         accessMat3D(spillage_from_neigh, new_row, new_col, cell_pos) =
                                             proportion * (current_height - neighbor_height);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+"""
+
+        /* Step 2: Compute water spillage to neighbor cells */
+        for (row_pos = 0; row_pos < NROWS; row_pos++) {
+            for (col_pos = 0; col_pos < NCOLS; col_pos++) {
+                #pragma HLS PIPELINE II=1
+                if (water_level[row_pos][col_pos] > 0) {
+                    float sum_diff = 0;
+                    float my_spillage_level = 0;
+
+                    /* Differences between current-cell level and its neighbours  */
+                    float current_height =
+                        p->ground[row_pos][col_pos] + FLOATING(water_level[row_pos][col_pos]);
+                        // accessMat(p->ground, row_pos, col_pos) + FLOATING(water_level[row_pos][col_pos]);
+
+                    // Iterate over the four neighboring cells using the displacement array
+                    for (cell_pos = 0; cell_pos < CONTIGUOUS_CELLS; cell_pos++) {
+                        new_row = row_pos + displacements[cell_pos][0];
+                        new_col = col_pos + displacements[cell_pos][1];
+
+                        float neighbor_height;
+
+                        // Check if the new position is within the matrix boundaries
+                        if (new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS)
+                            // Out of borders: Same height as the cell with no water
+                            neighbor_height = p->ground[row_pos][col_pos];
+                            // neighbor_height = accessMat(p->ground, row_pos, col_pos);
+                        else
+                            // Neighbor cell: Ground height + water level
+                            neighbor_height = p->ground[new_row][new_col] + FLOATING(water_level[new_row][new_col]);
+                            // neighbor_height = accessMat(p->ground, row_pos, col_pos) + FLOATING(water_level[new_row][new_col]);
+
+
+                        // Compute level differences
+                        if (current_height >= neighbor_height) {
+                            float height_diff = current_height - neighbor_height;
+                            sum_diff += height_diff;
+                            my_spillage_level = MAX(my_spillage_level, height_diff);
+                        }
+                    }
+                    my_spillage_level = MIN(FLOATING(water_level[row_pos][col_pos]), my_spillage_level);
+
+                    // Compute proportion of spillage to each neighbor
+                    if (sum_diff > 0.0) {
+                        float proportion = my_spillage_level / sum_diff;
+                        // If proportion is significative, spillage
+                        if (proportion > 1e-8) {
+                            spillage_flag[row_pos][col_pos] = 1;
+                            spillage_level[row_pos][col_pos] = my_spillage_level;
+
+                            // Iterate over the four neighboring cells using the displacement array
+                            #pragma HLS UNROLL
+                            for (cell_pos = 0; cell_pos < 4; cell_pos++) {
+                                new_row = row_pos + displacements[cell_pos][0];
+                                new_col = col_pos + displacements[cell_pos][1];
+
+                                float neighbor_height;
+
+                                // Check if the new position is within the matrix boundaries
+                                if (new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS) {
+                                    // Spillage out of the borders: Water loss
+                                    neighbor_height = p->ground[row_pos][col_pos];
+                                    // neighbor_height = accessMat(p->ground, row_pos, col_pos);
+                                    if (current_height >= neighbor_height) {
+                                        r->total_water_loss +=
+                                            FIXED(proportion * (current_height - neighbor_height) / 2);
+                                    }
+                                } else {
+                                    // Spillage to a neighbor cell
+                                    neighbor_height = p->ground[new_row][new_col] +
+                                                      FLOATING(water_level[new_row][new_col]);
+                                    if (current_height >= neighbor_height) {
+                                        int depths = CONTIGUOUS_CELLS;
+                                        spillage_from_neigh[new_row][new_col][cell_pos] = proportion * (current_height - neighbor_height);
+                                        // accessMat3D(spillage_from_neigh, new_row, new_col, cell_pos) = proportion * (current_height - neighbor_height);
                                     }
                                 }
                             }
