@@ -1,2 +1,4 @@
 /FLOOD_HLS_base
 .idea
+/cpu_impl
+vitis_hls.log
