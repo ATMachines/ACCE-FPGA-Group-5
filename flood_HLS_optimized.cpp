@@ -23,6 +23,8 @@
 #include "rng.h"
 #include <ap_fixed.h>
 
+typedef ap_fixed<16, 8> fixd;
+
 void do_compute(struct parameters *p, struct results *r) {
 
     double max_spillage_iter = p->threshold + 1;
@@ -111,12 +113,12 @@ void do_compute(struct parameters *p, struct results *r) {
             for (col_pos = 0; col_pos < NCOLS; col_pos++) {
                 #pragma HLS PIPELINE II=1
                 if (water_level[row_pos][col_pos] > 0) {
-                    ap_fixed<16,8> sum_diff = 0;
-                    ap_fixed<16,8> my_spillage_level = 0;
+                    fixd sum_diff = 0;
+                    fixd my_spillage_level = 0;
 
                     /* Differences between current-cell level and its neighbours  */
-                    ap_fixed<16,8> current_height =
-                        p->ground[row_pos][col_pos] + FLOATING(water_level[row_pos][col_pos]);
+                    fixd current_height =
+                        p->ground[row_pos][col_pos] + FIXED(water_level[row_pos][col_pos]);
                         // accessMat(p->ground, row_pos, col_pos) + FLOATING(water_level[row_pos][col_pos]);
 
                     // Iterate over the four neighboring cells using the displacement array
@@ -125,7 +127,7 @@ void do_compute(struct parameters *p, struct results *r) {
                         new_row = row_pos + displacements[cell_pos][0];
                         new_col = col_pos + displacements[cell_pos][1];
 
-                        ap_fixed<16,8> neighbor_height;
+                        fixd neighbor_height;
 
                         // Check if the new position is within the matrix boundaries
                         if (new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS)
@@ -134,24 +136,24 @@ void do_compute(struct parameters *p, struct results *r) {
                             // neighbor_height = accessMat(p->ground, row_pos, col_pos);
                         else
                             // Neighbor cell: Ground height + water level
-                            neighbor_height = p->ground[new_row][new_col] + FLOATING(water_level[new_row][new_col]);
+                            neighbor_height = p->ground[new_row][new_col] + FIXED(water_level[new_row][new_col]);
                             // neighbor_height = accessMat(p->ground, row_pos, col_pos) + FLOATING(water_level[new_row][new_col]);
 
 
                         // Compute level differences
                         if (current_height >= neighbor_height) {
-                            ap_fixed<16,8> height_diff = current_height - neighbor_height;
+                            fixd height_diff = current_height - neighbor_height;
                             sum_diff += height_diff;
                             my_spillage_level = MAX(my_spillage_level, height_diff);
                         }
                     }
-                    my_spillage_level = MIN(FLOATING(water_level[row_pos][col_pos]), my_spillage_level);
+                    my_spillage_level = MIN(FIXED(water_level[row_pos][col_pos]), my_spillage_level);
 
                     // Compute proportion of spillage to each neighbor
-                    if (sum_diff > 0.0) {
-                        ap_fixed<16,8> proportion = my_spillage_level / sum_diff;
+                    if (sum_diff > fixd(0.0)) {
+                        fixd proportion = my_spillage_level / sum_diff;
                         // If proportion is significative, spillage
-                        if (proportion > 1e-8) {
+                        if (proportion > fixd(1e-8)) {
                             spillage_flag[row_pos][col_pos] = 1;
                             spillage_level[row_pos][col_pos] = my_spillage_level;
 
@@ -161,7 +163,7 @@ void do_compute(struct parameters *p, struct results *r) {
                                 new_row = row_pos + displacements[cell_pos][0];
                                 new_col = col_pos + displacements[cell_pos][1];
 
-                                float neighbor_height;
+                                fixd neighbor_height;
 
                                 // Check if the new position is within the matrix boundaries
                                 if (new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS) {
@@ -175,7 +177,7 @@ void do_compute(struct parameters *p, struct results *r) {
                                 } else {
                                     // Spillage to a neighbor cell
                                     neighbor_height = p->ground[new_row][new_col] +
-                                                      FLOATING(water_level[new_row][new_col]);
+                                                      FIXED(water_level[new_row][new_col]);
                                     if (current_height >= neighbor_height) {
                                         int depths = CONTIGUOUS_CELLS;
                                         spillage_from_neigh[new_row][new_col][cell_pos] = proportion * (current_height - neighbor_height);
