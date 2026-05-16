@@ -21,6 +21,7 @@
  * Utils: Random generator
  */
 #include "rng.h"
+#include <ap_fixed.h>
 
 void do_compute(struct parameters *p, struct results *r) {
 
@@ -110,20 +111,21 @@ void do_compute(struct parameters *p, struct results *r) {
             for (col_pos = 0; col_pos < NCOLS; col_pos++) {
                 #pragma HLS PIPELINE II=1
                 if (water_level[row_pos][col_pos] > 0) {
-                    float sum_diff = 0;
-                    float my_spillage_level = 0;
+                    ap_fixed<16,8> sum_diff = 0;
+                    ap_fixed<16,8> my_spillage_level = 0;
 
                     /* Differences between current-cell level and its neighbours  */
-                    float current_height =
+                    ap_fixed<16,8> current_height =
                         p->ground[row_pos][col_pos] + FLOATING(water_level[row_pos][col_pos]);
                         // accessMat(p->ground, row_pos, col_pos) + FLOATING(water_level[row_pos][col_pos]);
 
                     // Iterate over the four neighboring cells using the displacement array
+                    #pragma HLS UNROLL
                     for (cell_pos = 0; cell_pos < CONTIGUOUS_CELLS; cell_pos++) {
                         new_row = row_pos + displacements[cell_pos][0];
                         new_col = col_pos + displacements[cell_pos][1];
 
-                        float neighbor_height;
+                        ap_fixed<16,8> neighbor_height;
 
                         // Check if the new position is within the matrix boundaries
                         if (new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS)
@@ -138,7 +140,7 @@ void do_compute(struct parameters *p, struct results *r) {
 
                         // Compute level differences
                         if (current_height >= neighbor_height) {
-                            float height_diff = current_height - neighbor_height;
+                            ap_fixed<16,8> height_diff = current_height - neighbor_height;
                             sum_diff += height_diff;
                             my_spillage_level = MAX(my_spillage_level, height_diff);
                         }
@@ -147,7 +149,7 @@ void do_compute(struct parameters *p, struct results *r) {
 
                     // Compute proportion of spillage to each neighbor
                     if (sum_diff > 0.0) {
-                        float proportion = my_spillage_level / sum_diff;
+                        ap_fixed<16,8> proportion = my_spillage_level / sum_diff;
                         // If proportion is significative, spillage
                         if (proportion > 1e-8) {
                             spillage_flag[row_pos][col_pos] = 1;
