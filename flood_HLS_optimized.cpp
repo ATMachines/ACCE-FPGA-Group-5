@@ -147,7 +147,11 @@ void do_compute(struct parameters *p, struct results *r) {
                             my_spillage_level = MAX(my_spillage_level, height_diff);
                         }
                     }
-                    my_spillage_level = MIN(FIXED(water_level[row_pos][col_pos]), my_spillage_level);
+                    fixd wl = fixd(water_level[row_pos][col_pos]);
+
+                    if (wl < my_spillage_level){
+                        my_spillage_level = wl;
+                    }
 
                     // Compute proportion of spillage to each neighbor
                     if (sum_diff > fixd(0.0)) {
@@ -172,7 +176,7 @@ void do_compute(struct parameters *p, struct results *r) {
                                     // neighbor_height = accessMat(p->ground, row_pos, col_pos);
                                     if (current_height >= neighbor_height) {
                                         r->total_water_loss +=
-                                            FIXED(proportion * (current_height - neighbor_height) / 2);
+                                            FIXED(proportion * (current_height - neighbor_height) / fixd(2));
                                     }
                                 } else {
                                     // Spillage to a neighbor cell
