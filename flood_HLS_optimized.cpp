@@ -107,104 +107,83 @@ void do_compute(struct parameters *p, struct results *r) {
         }
         
         /* Step 2: Compute water spillage to neighbor cells */
-        #pragma HLS DEPENDENCE variable=spillage_from_neigh inter false
         for (row_pos = 0; row_pos < NROWS; row_pos++) {
             for (col_pos = 0; col_pos < NCOLS; col_pos++) {
-                float local_water_loss = 0.0f;
-                float current_height = p->ground[row_pos][col_pos] + FLOATING(water_level[row_pos][col_pos]);
-                float proportion = 0.0f;
-                
                 #pragma HLS PIPELINE II=1
-                #pragma HLS ARRAY_PARTITION variable=differences complete
-                float differences[4];
+
+    
                 float sum_diff = 0.0f;
-                float my_spillage_level = 0.0f;
+            float my_spillage_level = 0.0f;
+            float current_water = FLOATING(water_level[row_pos][col_pos]);
+            float current_ground = p->ground[row_pos][col_pos];
+            float current_height = current_ground + current_water;
 
-                /* Differences between current-cell level and its neighbours  */
-                current_height = p->ground[row_pos][col_pos] + FLOATING(water_level[row_pos][col_pos]);
-                    // accessMat(p->ground, row_pos, col_pos) + FLOATING(water_level[row_pos][col_pos]);
+            float neighbor_heights[4];
+            bool valid_neighbor[4];
+            float height_diffs[4] = {0.0f, 0.0f, 0.0f, 0.0f};
 
-                // Iterate over the four neighboring cells using the displacement array
-                #pragma HLS UNROLL 
-                for (cell_pos = 0; cell_pos < CONTIGUOUS_CELLS; cell_pos++) {
-                    new_row = row_pos + displacements[cell_pos][0];
-                    new_col = col_pos + displacements[cell_pos][1];
-                    float neighbor_height;
+            if (water_level[row_pos][col_pos] > 0) {
 
-                    // Check if the new position is within the matrix boundaries
-                    if (new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS) {
-                        // Out of borders: Same height as the cell with no water
-                        neighbor_height = p->ground[row_pos][col_pos];
-                        // neighbor_height = accessMat(p->ground, row_pos, col_pos);
-                    }   
-                    else {
-                        // Neighbor cell: Ground height + water level
-                        neighbor_height = p->ground[new_row][new_col] + FLOATING(water_level[new_row][new_col]);
+                #pragma HLS UNROLL
+                for (cell_pos = 0; cell_pos < 4; cell_pos++) {
+                    int n_row = row_pos + displacements[cell_pos][0];
+                    int n_col = col_pos + displacements[cell_pos][1];
+
+                    if (n_row < 0 || n_row >= NROWS || n_col < 0 || n_col >= NCOLS) {
+                        neighbor_heights[cell_pos] = current_ground;
+                        valid_neighbor[cell_pos] = false;
+                    } else {
+                        neighbor_heights[cell_pos] = p->ground[n_row][n_col] + FLOATING(water_level[n_row][n_col]);
+                        valid_neighbor[cell_pos] = true;
                     }
 
-                    // Compute level differences
-                    differences[cell_pos] = (current_height >= neighbor_height) ? (current_height - neighbor_height) : 0.0f;
-                }
-                    
-                sum_diff = differences[0] + differences[1] + differences[2] + differences[3];
-
-                my_spillage_level = MAX(MAX(differences[0], differences[1]), MAX(differences[2], differences[3]));
-
-                my_spillage_level = MIN(FLOATING(water_level[row_pos][col_pos]), my_spillage_level);
-
-                // Compute proportion of spillage to each neighbor
-                if (sum_diff > 0.0) {
-                    proportion = my_spillage_level / sum_diff;
-                    // If proportion is significative, spillage
-                    if (proportion > 1e-8) {
-                            
-                        spillage_flag[row_pos][col_pos] = 1;
-                        spillage_level[row_pos][col_pos] = my_spillage_level;
-
-                        // Iterate over the four neighboring cells using the displacement array
-                        #pragma HLS UNROLL
-                        for (cell_pos = 0; cell_pos < 4; cell_pos++) {
-                            new_row = row_pos + displacements[cell_pos][0];
-                            new_col = col_pos + displacements[cell_pos][1];
-
-                            // Check if the new position is outside the matrix boundaries
-                            if (!(new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS)) {
-                                float neighbor_height = p->ground[new_row][new_col] + FLOATING(water_level[new_row][new_col]);
-                                if (current_height >= neighbor_height) {
-                                    spillage_from_neigh[new_row][new_col][cell_pos] = proportion * (current_height - neighbor_height);
-                                }
-                            }
+                    if (current_height >= neighbor_heights[cell_pos]) {
+                        float diff = current_height - neighbor_heights[cell_pos];
+                        height_diffs[cell_pos] = diff;
+                        sum_diff += diff;
+                        if (diff > my_spillage_level) {
+                            my_spillage_level = diff;
                         }
                     }
                 }
-            #pragma HLS UNROLL
-            for (cell_pos = 0; cell_pos < 4; cell_pos++) {
-                new_row = row_pos + displacements[cell_pos][0];
-                new_col = row_pos + displacements[cell_pos][1];
 
-                if (new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS) {
-                    float boundary_diff = current_height - p->ground[row_pos][col_pos];
+                my_spillage_level = MIN(current_water, my_spillage_level);
 
-                    if (boundary_diff > 0.0f && proportion > 0.0f) {
-                        local_water_loss +=
-                        proportion * boundary_diff * 0.5f;
+                if (sum_diff > 0.0f) {
+                    float proportion = my_spillage_level / sum_diff;
+
+                    if (proportion > 1e-8) {
+                        spillage_flag[row_pos][col_pos] = 1;
+                        spillage_level[row_pos][col_pos] = my_spillage_level;
+
+                        float local_water_loss = 0.0f;
+
+                        #pragma HLS UNROLL
+                        for (cell_pos = 0; cell_pos < 4; cell_pos++) {
+                            if (current_height >= neighbor_heights[cell_pos]) {
+                                float calculated_spillage = proportion * height_diffs[cell_pos];
+
+                                if (!valid_neighbor[cell_pos]) {
+                                    local_water_loss += calculated_spillage / 2.0f;
+                                } else {
+                                    int n_row = row_pos + displacements[cell_pos][0];
+                                    int n_col = col_pos + displacements[cell_pos][1];
+                                    spillage_from_neigh[n_row][n_col][cell_pos] = calculated_spillage;
+                                    #pragma HLS DEPENDENCE variable=spillage_from_neigh inter false
+                                }
+                            }
+                        }
+                    
+                        if (local_water_loss > 0.0f) {
+                            r->total_water_loss += FIXED(local_water_loss);
+                            #pragma HLS DEPENDENCE variable=r inter false
+                        }
                     }
                 }
             }
-            water_loss_buffer[row_pos][col_pos] = local_water_loss;
         }
     }
-
-        float total_water_loss = 0.0f;
-
-        for (int rpos = 0; rpos < NROWS; rpos++) {
-            for (int cpos = 0; cpos < NCOLS; cpos++) {
-                #pragma HLS PIPELINE II=1
-                total_water_loss += water_loss_buffer[rpos][cpos];
-            }
-        }
-
-        r->total_water_loss = total_water_loss;
+            
 
         /* Step 3: Propagation of previously computer water spillage to/from neighbors */
         max_spillage_iter = 0.0;
