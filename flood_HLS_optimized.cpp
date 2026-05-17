@@ -150,10 +150,11 @@ void do_compute(struct parameters *p, struct results *r) {
                     my_spillage_level = MIN(FLOATING(water_level[row_pos][col_pos]), my_spillage_level);
 
                     float local_water_loss = 0.0f;
+                    float proportion = 0.0f;
 
                     // Compute proportion of spillage to each neighbor
                     if (sum_diff > 0.0) {
-                        float proportion = my_spillage_level / sum_diff;
+                        proportion = my_spillage_level / sum_diff;
                         // If proportion is significative, spillage
                         if (proportion > 1e-8) {
                             
@@ -168,7 +169,6 @@ void do_compute(struct parameters *p, struct results *r) {
 
                                 // Check if the new position is outside the matrix boundaries
                                 if (!(new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS)) {
-                                    // Spillage to a neighbor cell
                                     float neighbor_height = p->ground[new_row][new_col] + FLOATING(water_level[new_row][new_col]);
                                     if (current_height >= neighbor_height) {
                                         int depths = CONTIGUOUS_CELLS;
@@ -179,20 +179,20 @@ void do_compute(struct parameters *p, struct results *r) {
                         }
                     }
                     #pragma HLS UNROLL
-                        for (cell_pos = 0; cell_pos < 4; cell_pos++) {
-                            new_row = row_pos + displacements[cell_pos][0];
-                            new_col = row_pos + displacements[cell_pos][1];
-                            
-                            if (new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS) {
-                                float neighbor_height = p->ground[row_pos][col_pos];
+                    for (cell_pos = 0; cell_pos < 4; cell_pos++) {
+                        new_row = row_pos + displacements[cell_pos][0];
+                        new_col = row_pos + displacements[cell_pos][1];
 
-                                if (current_height > neighbor_height) {
-                                    local_water_loss += (current_height - neighbor_height) * 0.5f;
-                                }
+                        if (new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS) {
+                            float neighbor_height = p->ground[row_pos][col_pos];
+
+                            if (current_height > neighbor_height) {
+                                local_water_loss += proportion * (current_height - neighbor_height) * 0.5f;
                             }
                         }
-                    water_loss_buffer[row_pos][col_pos] = local_water_loss;
+                    }
                 }
+                water_loss_buffer[row_pos][col_pos] = local_water_loss;
             }
         }
 
