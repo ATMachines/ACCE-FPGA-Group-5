@@ -36,9 +36,6 @@ void do_compute(struct parameters *p, struct results *r) {
     float spillage_level[NROWS][NCOLS];
     float spillage_from_neigh[NROWS][NCOLS][CONTIGUOUS_CELLS];
 
-#pragma HLS ARRAY_PARTITION variable=spillage_from_neigh complete dim=3
-#pragma HLS array_partition variable=water_level complete dim=2
-
     /* Initialization */
     /* 3.1. Memory allocation */
     // water_level = (int *)malloc(sizeof(int) * (size_t)NROWS * (size_t)NCOLS);
@@ -94,7 +91,6 @@ void do_compute(struct parameters *p, struct results *r) {
             float row_pos, col_pos;
             for (row_pos = row_start; row_pos < row_end; row_pos++) {
                 for (col_pos = col_start; col_pos < col_end; col_pos++) {
-#pragma HLS PIPELINE II=1
                     float x_pos = COORD_MAT2SCEN_X(col_pos);
                     float y_pos = COORD_MAT2SCEN_Y(row_pos);
                     distance = sqrt(pow(x_pos - p->clouds[cloud].x, 2) + pow(y_pos - p->clouds[cloud].y, 2));
@@ -196,7 +192,6 @@ void do_compute(struct parameters *p, struct results *r) {
             PROPAGATION_COLS:
             for (col_pos = 0; col_pos < NCOLS; col_pos++) {
 
-#pragma HLS PIPELINE II=1
                 //local copy to avoid dependencies
                 int wl = water_level[row_pos][col_pos];
 
@@ -224,7 +219,6 @@ void do_compute(struct parameters *p, struct results *r) {
                 // Accumulate spillage from neighbors
                 NEIGHBOR_ACCUM:
                 for (cell_pos = 0; cell_pos < CONTIGUOUS_CELLS; cell_pos++) {
-#pragma HLS UNROLL
                     spill_acc += FIXED(spillage_from_neigh[row_pos][col_pos][cell_pos] / SPILLAGE_FACTOR);
                 }
 

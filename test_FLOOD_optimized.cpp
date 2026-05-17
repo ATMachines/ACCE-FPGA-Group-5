@@ -206,31 +206,10 @@ int main(int argc, char *argv[]) {
      *
      */
 
-    float *ground;   // Ground height
-    Cloud_t *clouds; // Clouds
+    // float *ground;   // Ground height
+    Cloud_t clouds[NCLOUDS];
 
-    /* Initialization */
-    /* Memory allocation */
-    ground = (float *)malloc(sizeof(float) * (size_t)NROWS * (size_t)NCOLS);
-    clouds = (Cloud_t *)malloc(sizeof(Cloud_t) * (NCLOUDS));
-
-    if (ground == NULL) {
-        fprintf(stderr, "-- Error allocating ground and rain structures for size: %d x %d \n", NROWS, NCOLS);
-        exit(EXIT_FAILURE);
-    }
-    if (clouds == NULL) {
-        fprintf(stderr, "-- Error allocating clouds structures for size: %d\n", NCLOUDS);
-        exit(EXIT_FAILURE);
-    }
-
-    /* Ground generation and initialization of other structures */
-    int row_pos, col_pos, depth_pos;
-    for (row_pos = 0; row_pos < NROWS; row_pos++) {
-        for (col_pos = 0; col_pos < NCOLS; col_pos++) {
-            int columns = NCOLS;
-            accessMat(ground, row_pos, col_pos) = get_height(ground_scenario, row_pos, col_pos, NROWS, NCOLS);
-        }
-    }
+#pragma HLS ARRAY_PARTITION variable=clouds complete dim=1
 
     /* Clouds initialization */
     /* Random clouds generation */
@@ -246,8 +225,19 @@ int main(int argc, char *argv[]) {
     assert(arg_clouds == NCLOUDS);
 
     // Set input parameters
-    p.ground = ground;
-    p.clouds = clouds;
+    // p.ground = ground;
+    // p.clouds = clouds;
+
+    for (int i = 0; i < NROWS; i++) {
+        for (int j = 0; j < NCOLS; j++) {
+            int columns = NCOLS;
+            p.ground[i][j] = get_height(ground_scenario, i, j, NROWS, NCOLS);
+        }
+    }
+
+    for (int c = 0; c < NCLOUDS; c++) {
+        p.clouds[c] = clouds[c];
+    }
 
     struct results r = {.minute = 0,
                         .max_water_scenario = 0.0,
@@ -260,8 +250,8 @@ int main(int argc, char *argv[]) {
     do_compute(&p, &r);
 
     /* Free resources */
-    free(ground);
-    free(clouds);
+    // free(ground);
+    // free(clouds);
 
     /* Write results to file*/
     writeResult(&r, argv[1]);
