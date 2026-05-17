@@ -94,6 +94,7 @@ void do_compute(struct parameters *p, struct results *r) {
             float row_pos, col_pos;
             for (row_pos = row_start; row_pos < row_end; row_pos++) {
                 for (col_pos = col_start; col_pos < col_end; col_pos++) {
+#pragma HLS PIPELINE II=1
                     float x_pos = COORD_MAT2SCEN_X(col_pos);
                     float y_pos = COORD_MAT2SCEN_Y(row_pos);
                     distance = sqrt(pow(x_pos - p->clouds[cloud].x, 2) + pow(y_pos - p->clouds[cloud].y, 2));
