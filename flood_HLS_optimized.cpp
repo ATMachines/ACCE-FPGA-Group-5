@@ -112,7 +112,7 @@ void do_compute(struct parameters *p, struct results *r) {
             for (col_pos = 0; col_pos < NCOLS; col_pos++) {
                 #pragma HLS PIPELINE II=1
                 if (water_level[row_pos][col_pos] > 0) {
-                    #pragma HLS ARRAY_PARTITION variable=diffs complete
+                    #pragma HLS ARRAY_PARTITION variable=differences complete
                     float differences[4];
 
                     /* Differences between current-cell level and its neighbours  */
@@ -140,12 +140,12 @@ void do_compute(struct parameters *p, struct results *r) {
 
 
                         // Compute level differences
-                        diffs[cell_pos] = (current_height >= neighbor_height) ? (current_height - neighbor_height) : 0.0f;
+                        differences[cell_pos] = (current_height >= neighbor_height) ? (current_height - neighbor_height) : 0.0f;
                     }
                     
-                    float sum_diff = diffs[0] + diffs[1] + diffs[2] + diffs[3];
+                    float sum_diff = differences[0] + differences[1] + differences[2] + differences[3];
 
-                    float my_spillage_level = MAX(MAX(diffs[0], diffs[1]), MAX(diffs[2], diffs[3]));
+                    float my_spillage_level = MAX(MAX(differences[0], differences[1]), MAX(differences[2], differences[3]));
 
                     my_spillage_level = MIN(FLOATING(water_level[row_pos][col_pos]), my_spillage_level);
 
