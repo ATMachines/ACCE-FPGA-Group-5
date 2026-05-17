@@ -111,6 +111,8 @@ void do_compute(struct parameters *p, struct results *r) {
         for (row_pos = 0; row_pos < NROWS; row_pos++) {
             for (col_pos = 0; col_pos < NCOLS; col_pos++) {
                 float local_water_loss = 0.0f;
+                float current_height = p->ground[row_pos][col_pos] + FLOATING(water_level[row_pos][col_pos]);
+                float proportion = 0.0f;
                 
                 #pragma HLS PIPELINE II=1
                 if (water_level[row_pos][col_pos] > 0) {
@@ -151,7 +153,6 @@ void do_compute(struct parameters *p, struct results *r) {
 
                     my_spillage_level = MIN(FLOATING(water_level[row_pos][col_pos]), my_spillage_level);
 
-                    float proportion = 0.0f;
                     // Compute proportion of spillage to each neighbor
                     if (sum_diff > 0.0) {
                         proportion = my_spillage_level / sum_diff;
@@ -171,24 +172,23 @@ void do_compute(struct parameters *p, struct results *r) {
                                 if (!(new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS)) {
                                     float neighbor_height = p->ground[new_row][new_col] + FLOATING(water_level[new_row][new_col]);
                                     if (current_height >= neighbor_height) {
-                                        int depths = CONTIGUOUS_CELLS;
                                         spillage_from_neigh[new_row][new_col][cell_pos] = proportion * (current_height - neighbor_height);
                                     }
                                 }
                             }
                         }
                     }
-                    #pragma HLS UNROLL
-                    for (cell_pos = 0; cell_pos < 4; cell_pos++) {
-                        new_row = row_pos + displacements[cell_pos][0];
-                        new_col = row_pos + displacements[cell_pos][1];
+                }
+                #pragma HLS UNROLL
+                for (cell_pos = 0; cell_pos < 4; cell_pos++) {
+                    new_row = row_pos + displacements[cell_pos][0];
+                    new_col = row_pos + displacements[cell_pos][1];
 
-                        if (new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS) {
-                            float boundary_diff = differences[cell_pos];
+                    if (new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS) {
+                        float boundary_diff = differences[cell_pos];
 
-                            if (boundary_diff > 0.0f) {
-                                local_water_loss += proportion * boundary_diff * 0.5f;
-                            }
+                        if (boundary_diff > 0.0f) {
+                            local_water_loss += proportion * boundary_diff * 0.5f;
                         }
                     }
                 }
