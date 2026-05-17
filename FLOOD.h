@@ -11,6 +11,7 @@
  */
 #define PRECISION 1000000
 #define FIXED(a) ((int)((a) * PRECISION))
+#define FIXD(a) ((fixd)(a) / PRECISION)
 #define FLOATING(a) ((float)(a) / PRECISION)
 #define PRECISION_FIXED 1
 #define PRECISION_FLOAT 2
