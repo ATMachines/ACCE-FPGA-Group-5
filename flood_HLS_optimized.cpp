@@ -185,7 +185,7 @@ void do_compute(struct parameters *p, struct results *r) {
                     new_col = row_pos + displacements[cell_pos][1];
 
                     if (new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS) {
-                        float boundary_diff = current_height - neighbor_height;
+                        float boundary_diff = current_height - p->ground[row_pos][col_pos];
 
                         if (boundary_diff > 0.0f) {
                             local_water_loss += proportion * boundary_diff * 0.5f;
