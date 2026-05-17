@@ -110,6 +110,8 @@ void do_compute(struct parameters *p, struct results *r) {
         #pragma HLS DEPENDENCE variable=spillage_from_neigh inter false
         for (row_pos = 0; row_pos < NROWS; row_pos++) {
             for (col_pos = 0; col_pos < NCOLS; col_pos++) {
+                float local_water_loss = 0.0f;
+                
                 #pragma HLS PIPELINE II=1
                 if (water_level[row_pos][col_pos] > 0) {
                     #pragma HLS ARRAY_PARTITION variable=differences complete
@@ -149,7 +151,6 @@ void do_compute(struct parameters *p, struct results *r) {
 
                     my_spillage_level = MIN(FLOATING(water_level[row_pos][col_pos]), my_spillage_level);
 
-                    float local_water_loss = 0.0f;
                     float proportion = 0.0f;
 
                     // Compute proportion of spillage to each neighbor
