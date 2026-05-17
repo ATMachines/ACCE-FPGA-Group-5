@@ -2,4 +2,4 @@
 .idea
 /cpu_impl
 vitis_hls.log
-**/verilog/
+**/verilog/**
