@@ -1,0 +1,5 @@
+/home/acce2632/acce-fpga/.small_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/rng.pp.0.cpp:6518:5: warning: Added loop label VITIS_LOOP_80_1:   [xilinx-label-all-loops]
+    while (steps > 0) {
+    ^~~~~
+    VITIS_LOOP_80_1: 
+/home/acce2632/acce-fpga/.small_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/rng.pp.0.cpp:6518:5: note: FIX-IT applied suggested code changes

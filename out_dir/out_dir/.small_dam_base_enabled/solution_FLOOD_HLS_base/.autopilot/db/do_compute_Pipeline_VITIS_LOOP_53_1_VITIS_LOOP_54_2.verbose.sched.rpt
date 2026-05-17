@@ -1,0 +1,288 @@
+
+
+================================================================
+== Vitis HLS Report for 'do_compute_Pipeline_VITIS_LOOP_53_1_VITIS_LOOP_54_2'
+================================================================
+* Date:           Sun May 17 18:41:38 2026
+
+* Version:        2024.1 (Build 5069499 on May 21 2024)
+* Project:        .small_dam_base_enabled
+* Solution:       solution_FLOOD_HLS_base (Vivado IP Flow Target)
+* Product family: virtexuplusHBM
+* Target device:  xcu50-fsvh2104-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  4.00 ns|  2.615 ns|     1.08 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+------+------+-----------------------------------------------+
+    |  Latency (cycles) |   Latency (absolute)  |   Interval  |                    Pipeline                   |
+    |   min   |   max   |    min    |    max    |  min |  max |                      Type                     |
+    +---------+---------+-----------+-----------+------+------+-----------------------------------------------+
+    |     8112|     8112|  32.448 us|  32.448 us|  8101|  8101|  loop auto-rewind stp(delay=0 clock cycles(s))|
+    +---------+---------+-----------+-----------+------+------+-----------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |             Loop Name             |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-----------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_53_1_VITIS_LOOP_54_2  |     8110|     8110|        12|          1|          1|  8100|       yes|
+        +-----------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 12
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 12
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 12, States = { 1 2 3 4 5 6 7 8 9 10 11 12 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 2.61>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%col_pos = alloca i32 1" [flood_HLS_base.cpp:52]   --->   Operation 15 'alloca' 'col_pos' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%row_pos = alloca i32 1" [flood_HLS_base.cpp:52]   --->   Operation 16 'alloca' 'row_pos' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%indvar_flatten = alloca i32 1"   --->   Operation 17 'alloca' 'indvar_flatten' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.38ns)   --->   "%store_ln0 = store i13 0, i13 %indvar_flatten"   --->   Operation 18 'store' 'store_ln0' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 19 [1/1] (0.38ns)   --->   "%store_ln52 = store i7 0, i7 %row_pos" [flood_HLS_base.cpp:52]   --->   Operation 19 'store' 'store_ln52' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 20 [1/1] (0.38ns)   --->   "%store_ln52 = store i7 0, i7 %col_pos" [flood_HLS_base.cpp:52]   --->   Operation 20 'store' 'store_ln52' <Predicate = true> <Delay = 0.38>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%br_ln0 = br void %VITIS_LOOP_63_3"   --->   Operation 21 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%indvar_flatten_load = load i13 %indvar_flatten" [flood_HLS_base.cpp:53]   --->   Operation 22 'load' 'indvar_flatten_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.75ns)   --->   "%icmp_ln53 = icmp_eq  i13 %indvar_flatten_load, i13 8100" [flood_HLS_base.cpp:53]   --->   Operation 23 'icmp' 'icmp_ln53' <Predicate = true> <Delay = 0.75> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.75> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 24 [1/1] (0.75ns)   --->   "%add_ln53_1 = add i13 %indvar_flatten_load, i13 1" [flood_HLS_base.cpp:53]   --->   Operation 24 'add' 'add_ln53_1' <Predicate = true> <Delay = 0.75> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.75> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%br_ln53 = br i1 %icmp_ln53, void %for.inc26, void %VITIS_LOOP_70_4.exitStub" [flood_HLS_base.cpp:53]   --->   Operation 25 'br' 'br_ln53' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%col_pos_load = load i7 %col_pos" [flood_HLS_base.cpp:54]   --->   Operation 26 'load' 'col_pos_load' <Predicate = (!icmp_ln53)> <Delay = 0.00>
+ST_1 : Operation 27 [1/1] (0.00ns)   --->   "%row_pos_load = load i7 %row_pos" [flood_HLS_base.cpp:53]   --->   Operation 27 'load' 'row_pos_load' <Predicate = (!icmp_ln53)> <Delay = 0.00>
+ST_1 : Operation 28 [1/1] (0.70ns)   --->   "%add_ln53 = add i7 %row_pos_load, i7 1" [flood_HLS_base.cpp:53]   --->   Operation 28 'add' 'add_ln53' <Predicate = (!icmp_ln53)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 29 [1/1] (0.70ns)   --->   "%icmp_ln54 = icmp_eq  i7 %col_pos_load, i7 90" [flood_HLS_base.cpp:54]   --->   Operation 29 'icmp' 'icmp_ln54' <Predicate = (!icmp_ln53)> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'seteq' 'setne' 'setle' 'setge' 'setlt' 'setgt'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 30 [1/1] (0.30ns)   --->   "%select_ln52 = select i1 %icmp_ln54, i7 0, i7 %col_pos_load" [flood_HLS_base.cpp:52]   --->   Operation 30 'select' 'select_ln52' <Predicate = (!icmp_ln53)> <Delay = 0.30> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.30> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 31 [1/1] (0.30ns)   --->   "%select_ln53 = select i1 %icmp_ln54, i7 %add_ln53, i7 %row_pos_load" [flood_HLS_base.cpp:53]   --->   Operation 31 'select' 'select_ln53' <Predicate = (!icmp_ln53)> <Delay = 0.30> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.30> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 32 [1/1] (0.00ns)   --->   "%zext_ln54 = zext i7 %select_ln53" [flood_HLS_base.cpp:54]   --->   Operation 32 'zext' 'zext_ln54' <Predicate = (!icmp_ln53)> <Delay = 0.00>
+ST_1 : Operation 33 [3/3] (0.99ns) (grouped into DSP with root node add_ln59)   --->   "%mul_ln54 = mul i13 %zext_ln54, i13 90" [flood_HLS_base.cpp:54]   --->   Operation 33 'mul' 'mul_ln54' <Predicate = (!icmp_ln53)> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 124 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 34 [11/11] (1.21ns)   --->   "%urem_ln52 = urem i7 %select_ln52, i7 3" [flood_HLS_base.cpp:52]   --->   Operation 34 'urem' 'urem_ln52' <Predicate = (!icmp_ln53)> <Delay = 1.21> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 10> <II = 1> <Delay = 1.21> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 35 [1/1] (0.70ns)   --->   "%add_ln54 = add i7 %select_ln52, i7 1" [flood_HLS_base.cpp:54]   --->   Operation 35 'add' 'add_ln54' <Predicate = (!icmp_ln53)> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 36 [1/1] (0.38ns)   --->   "%store_ln53 = store i13 %add_ln53_1, i13 %indvar_flatten" [flood_HLS_base.cpp:53]   --->   Operation 36 'store' 'store_ln53' <Predicate = (!icmp_ln53)> <Delay = 0.38>
+ST_1 : Operation 37 [1/1] (0.38ns)   --->   "%store_ln52 = store i7 %select_ln53, i7 %row_pos" [flood_HLS_base.cpp:52]   --->   Operation 37 'store' 'store_ln52' <Predicate = (!icmp_ln53)> <Delay = 0.38>
+ST_1 : Operation 38 [1/1] (0.38ns)   --->   "%store_ln52 = store i7 %add_ln54, i7 %col_pos" [flood_HLS_base.cpp:52]   --->   Operation 38 'store' 'store_ln52' <Predicate = (!icmp_ln53)> <Delay = 0.38>
+
+State 2 <SV = 1> <Delay = 1.21>
+ST_2 : Operation 39 [2/3] (0.99ns) (grouped into DSP with root node add_ln59)   --->   "%mul_ln54 = mul i13 %zext_ln54, i13 90" [flood_HLS_base.cpp:54]   --->   Operation 39 'mul' 'mul_ln54' <Predicate = true> <Delay = 0.99> <CoreInst = "DSP48">   --->   Core 124 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 40 [10/11] (1.21ns)   --->   "%urem_ln52 = urem i7 %select_ln52, i7 3" [flood_HLS_base.cpp:52]   --->   Operation 40 'urem' 'urem_ln52' <Predicate = true> <Delay = 1.21> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 10> <II = 1> <Delay = 1.21> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+
+State 3 <SV = 2> <Delay = 2.21>
+ST_3 : Operation 41 [1/1] (0.00ns)   --->   "%p_shl = bitconcatenate i12 @_ssdm_op_BitConcatenate.i12.i7.i5, i7 %select_ln53, i5 0" [flood_HLS_base.cpp:58]   --->   Operation 41 'bitconcatenate' 'p_shl' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 42 [1/1] (0.00ns)   --->   "%tmp = bitconcatenate i8 @_ssdm_op_BitConcatenate.i8.i7.i1, i7 %select_ln53, i1 0" [flood_HLS_base.cpp:58]   --->   Operation 42 'bitconcatenate' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 43 [1/1] (0.00ns)   --->   "%zext_ln58 = zext i8 %tmp" [flood_HLS_base.cpp:58]   --->   Operation 43 'zext' 'zext_ln58' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 44 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%sub_ln58 = sub i12 %p_shl, i12 %zext_ln58" [flood_HLS_base.cpp:58]   --->   Operation 44 'sub' 'sub_ln58' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.37> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 45 [1/3] (0.00ns) (grouped into DSP with root node add_ln59)   --->   "%mul_ln54 = mul i13 %zext_ln54, i13 90" [flood_HLS_base.cpp:54]   --->   Operation 45 'mul' 'mul_ln54' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 124 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 46 [1/1] (0.00ns)   --->   "%zext_ln59 = zext i7 %select_ln52" [flood_HLS_base.cpp:59]   --->   Operation 46 'zext' 'zext_ln59' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 47 [2/2] (0.64ns) (root node of the DSP)   --->   "%add_ln59 = add i13 %mul_ln54, i13 %zext_ln59" [flood_HLS_base.cpp:59]   --->   Operation 47 'add' 'add_ln59' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 124 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 48 [1/1] (0.00ns)   --->   "%zext_ln52 = zext i7 %select_ln52" [flood_HLS_base.cpp:52]   --->   Operation 48 'zext' 'zext_ln52' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 49 [1/1] (1.46ns)   --->   "%mul_ln52 = mul i15 %zext_ln52, i15 171" [flood_HLS_base.cpp:52]   --->   Operation 49 'mul' 'mul_ln52' <Predicate = true> <Delay = 1.46> <CoreInst = "Multiplier">   --->   Core 3 'Multiplier' <Latency = 0> <II = 1> <Delay = 1.46> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 50 [1/1] (0.00ns)   --->   "%tmp_33 = partselect i6 @_ssdm_op_PartSelect.i6.i15.i32.i32, i15 %mul_ln52, i32 9, i32 14" [flood_HLS_base.cpp:52]   --->   Operation 50 'partselect' 'tmp_33' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 51 [1/1] (0.00ns)   --->   "%zext_ln58_1 = zext i6 %tmp_33" [flood_HLS_base.cpp:58]   --->   Operation 51 'zext' 'zext_ln58_1' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 52 [1/1] (0.75ns) (root node of TernaryAdder)   --->   "%add_ln58 = add i12 %sub_ln58, i12 %zext_ln58_1" [flood_HLS_base.cpp:58]   --->   Operation 52 'add' 'add_ln58' <Predicate = true> <Delay = 0.75> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.37> <IPBlock> <Opcode : '' 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 53 [9/11] (1.21ns)   --->   "%urem_ln52 = urem i7 %select_ln52, i7 3" [flood_HLS_base.cpp:52]   --->   Operation 53 'urem' 'urem_ln52' <Predicate = true> <Delay = 1.21> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 10> <II = 1> <Delay = 1.21> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+
+State 4 <SV = 3> <Delay = 1.89>
+ST_4 : Operation 54 [1/2] (0.64ns) (root node of the DSP)   --->   "%add_ln59 = add i13 %mul_ln54, i13 %zext_ln59" [flood_HLS_base.cpp:59]   --->   Operation 54 'add' 'add_ln59' <Predicate = true> <Delay = 0.64> <CoreInst = "DSP48">   --->   Core 124 'DSP48' <Latency = 3> <II = 1> <Delay = 0.53> <IPBlock> <Opcode : '' 'add' 'sub' 'mul' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_4 : Operation 55 [1/1] (0.00ns)   --->   "%zext_ln59_1 = zext i13 %add_ln59" [flood_HLS_base.cpp:59]   --->   Operation 55 'zext' 'zext_ln59_1' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 56 [1/1] (0.00ns)   --->   "%spillage_flag_addr = getelementptr i32 %spillage_flag, i64 0, i64 %zext_ln59_1" [flood_HLS_base.cpp:59]   --->   Operation 56 'getelementptr' 'spillage_flag_addr' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 57 [1/1] (0.00ns)   --->   "%spillage_level_addr = getelementptr i32 %spillage_level, i64 0, i64 %zext_ln59_1" [flood_HLS_base.cpp:60]   --->   Operation 57 'getelementptr' 'spillage_level_addr' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 58 [1/1] (0.00ns)   --->   "%spillage_from_neigh_addr = getelementptr i32 %spillage_from_neigh, i64 0, i64 %zext_ln59_1" [flood_HLS_base.cpp:64]   --->   Operation 58 'getelementptr' 'spillage_from_neigh_addr' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 59 [1/1] (0.00ns)   --->   "%spillage_from_neigh_1_addr = getelementptr i32 %spillage_from_neigh_1, i64 0, i64 %zext_ln59_1" [flood_HLS_base.cpp:64]   --->   Operation 59 'getelementptr' 'spillage_from_neigh_1_addr' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 60 [1/1] (0.00ns)   --->   "%spillage_from_neigh_2_addr = getelementptr i32 %spillage_from_neigh_2, i64 0, i64 %zext_ln59_1" [flood_HLS_base.cpp:64]   --->   Operation 60 'getelementptr' 'spillage_from_neigh_2_addr' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 61 [1/1] (0.00ns)   --->   "%spillage_from_neigh_3_addr = getelementptr i32 %spillage_from_neigh_3, i64 0, i64 %zext_ln59_1" [flood_HLS_base.cpp:64]   --->   Operation 61 'getelementptr' 'spillage_from_neigh_3_addr' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 62 [8/11] (1.21ns)   --->   "%urem_ln52 = urem i7 %select_ln52, i7 3" [flood_HLS_base.cpp:52]   --->   Operation 62 'urem' 'urem_ln52' <Predicate = true> <Delay = 1.21> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 10> <II = 1> <Delay = 1.21> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 63 [1/1] (1.24ns)   --->   "%store_ln59 = store i32 0, i13 %spillage_flag_addr" [flood_HLS_base.cpp:59]   --->   Operation 63 'store' 'store_ln59' <Predicate = true> <Delay = 1.24> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 1.24> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 8100> <RAM>
+ST_4 : Operation 64 [1/1] (1.24ns)   --->   "%store_ln60 = store i32 0, i13 %spillage_level_addr" [flood_HLS_base.cpp:60]   --->   Operation 64 'store' 'store_ln60' <Predicate = true> <Delay = 1.24> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 1.24> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 8100> <RAM>
+ST_4 : Operation 65 [1/1] (1.24ns)   --->   "%store_ln64 = store i32 0, i13 %spillage_from_neigh_addr" [flood_HLS_base.cpp:64]   --->   Operation 65 'store' 'store_ln64' <Predicate = true> <Delay = 1.24> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 1.24> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 8100> <RAM>
+ST_4 : Operation 66 [1/1] (1.24ns)   --->   "%store_ln64 = store i32 0, i13 %spillage_from_neigh_1_addr" [flood_HLS_base.cpp:64]   --->   Operation 66 'store' 'store_ln64' <Predicate = true> <Delay = 1.24> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 1.24> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 8100> <RAM>
+ST_4 : Operation 67 [1/1] (1.24ns)   --->   "%store_ln64 = store i32 0, i13 %spillage_from_neigh_2_addr" [flood_HLS_base.cpp:64]   --->   Operation 67 'store' 'store_ln64' <Predicate = true> <Delay = 1.24> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 1.24> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 8100> <RAM>
+ST_4 : Operation 68 [1/1] (1.24ns)   --->   "%store_ln64 = store i32 0, i13 %spillage_from_neigh_3_addr" [flood_HLS_base.cpp:64]   --->   Operation 68 'store' 'store_ln64' <Predicate = true> <Delay = 1.24> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 1.24> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 8100> <RAM>
+ST_4 : Operation 69 [1/1] (0.00ns)   --->   "%br_ln54 = br void %VITIS_LOOP_63_3" [flood_HLS_base.cpp:54]   --->   Operation 69 'br' 'br_ln54' <Predicate = true> <Delay = 0.00>
+
+State 5 <SV = 4> <Delay = 1.21>
+ST_5 : Operation 70 [7/11] (1.21ns)   --->   "%urem_ln52 = urem i7 %select_ln52, i7 3" [flood_HLS_base.cpp:52]   --->   Operation 70 'urem' 'urem_ln52' <Predicate = true> <Delay = 1.21> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 10> <II = 1> <Delay = 1.21> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 1.21>
+ST_6 : Operation 71 [6/11] (1.21ns)   --->   "%urem_ln52 = urem i7 %select_ln52, i7 3" [flood_HLS_base.cpp:52]   --->   Operation 71 'urem' 'urem_ln52' <Predicate = true> <Delay = 1.21> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 10> <II = 1> <Delay = 1.21> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+
+State 7 <SV = 6> <Delay = 1.21>
+ST_7 : Operation 72 [5/11] (1.21ns)   --->   "%urem_ln52 = urem i7 %select_ln52, i7 3" [flood_HLS_base.cpp:52]   --->   Operation 72 'urem' 'urem_ln52' <Predicate = true> <Delay = 1.21> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 10> <II = 1> <Delay = 1.21> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+
+State 8 <SV = 7> <Delay = 1.21>
+ST_8 : Operation 73 [4/11] (1.21ns)   --->   "%urem_ln52 = urem i7 %select_ln52, i7 3" [flood_HLS_base.cpp:52]   --->   Operation 73 'urem' 'urem_ln52' <Predicate = true> <Delay = 1.21> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 10> <II = 1> <Delay = 1.21> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+
+State 9 <SV = 8> <Delay = 1.21>
+ST_9 : Operation 74 [3/11] (1.21ns)   --->   "%urem_ln52 = urem i7 %select_ln52, i7 3" [flood_HLS_base.cpp:52]   --->   Operation 74 'urem' 'urem_ln52' <Predicate = true> <Delay = 1.21> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 10> <II = 1> <Delay = 1.21> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+
+State 10 <SV = 9> <Delay = 1.21>
+ST_10 : Operation 75 [2/11] (1.21ns)   --->   "%urem_ln52 = urem i7 %select_ln52, i7 3" [flood_HLS_base.cpp:52]   --->   Operation 75 'urem' 'urem_ln52' <Predicate = true> <Delay = 1.21> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 10> <II = 1> <Delay = 1.21> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+
+State 11 <SV = 10> <Delay = 1.88>
+ST_11 : Operation 76 [1/11] (1.21ns)   --->   "%urem_ln52 = urem i7 %select_ln52, i7 3" [flood_HLS_base.cpp:52]   --->   Operation 76 'urem' 'urem_ln52' <Predicate = true> <Delay = 1.21> <CoreInst = "Divider">   --->   Core 6 'Divider' <Latency = 10> <II = 1> <Delay = 1.21> <FuncUnit> <Opcode : 'udiv' 'sdiv' 'urem' 'srem'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 77 [1/1] (0.00ns)   --->   "%trunc_ln52 = trunc i2 %urem_ln52" [flood_HLS_base.cpp:52]   --->   Operation 77 'trunc' 'trunc_ln52' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 78 [1/1] (0.66ns)   --->   "%switch_ln58 = switch i2 %trunc_ln52, void %arrayidx597.case.2, i2 0, void %arrayidx597.case.0, i2 1, void %arrayidx597.case.1" [flood_HLS_base.cpp:58]   --->   Operation 78 'switch' 'switch_ln58' <Predicate = true> <Delay = 0.66>
+ST_11 : Operation 92 [1/1] (0.38ns)   --->   "%ret_ln0 = ret"   --->   Operation 92 'ret' 'ret_ln0' <Predicate = (icmp_ln53)> <Delay = 0.38>
+
+State 12 <SV = 11> <Delay = 1.64>
+ST_12 : Operation 79 [1/1] (0.00ns)   --->   "%specloopname_ln0 = specloopname void @_ssdm_op_SpecLoopName, void @VITIS_LOOP_53_1_VITIS_LOOP_54_2_str"   --->   Operation 79 'specloopname' 'specloopname_ln0' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 80 [1/1] (0.00ns)   --->   "%speclooptripcount_ln0 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 8100, i64 8100, i64 8100"   --->   Operation 80 'speclooptripcount' 'speclooptripcount_ln0' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 81 [1/1] (0.00ns)   --->   "%specpipeline_ln52 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_3" [flood_HLS_base.cpp:52]   --->   Operation 81 'specpipeline' 'specpipeline_ln52' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 82 [1/1] (0.00ns)   --->   "%zext_ln58_2 = zext i12 %add_ln58" [flood_HLS_base.cpp:58]   --->   Operation 82 'zext' 'zext_ln58_2' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 83 [1/1] (0.00ns)   --->   "%water_level_addr = getelementptr i32 %water_level, i64 0, i64 %zext_ln58_2" [flood_HLS_base.cpp:58]   --->   Operation 83 'getelementptr' 'water_level_addr' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 84 [1/1] (0.00ns)   --->   "%water_level_1_addr = getelementptr i32 %water_level_1, i64 0, i64 %zext_ln58_2" [flood_HLS_base.cpp:58]   --->   Operation 84 'getelementptr' 'water_level_1_addr' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 85 [1/1] (0.00ns)   --->   "%water_level_2_addr = getelementptr i32 %water_level_2, i64 0, i64 %zext_ln58_2" [flood_HLS_base.cpp:58]   --->   Operation 85 'getelementptr' 'water_level_2_addr' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 86 [1/1] (1.64ns)   --->   "%store_ln58 = store i32 0, i12 %water_level_1_addr" [flood_HLS_base.cpp:58]   --->   Operation 86 'store' 'store_ln58' <Predicate = (trunc_ln52 == 1)> <Delay = 1.64> <CoreInst = "RAM_1WnR">   --->   Core 83 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 1.64> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 2700> <RAM>
+ST_12 : Operation 87 [1/1] (0.00ns)   --->   "%br_ln58 = br void %arrayidx597.exit" [flood_HLS_base.cpp:58]   --->   Operation 87 'br' 'br_ln58' <Predicate = (trunc_ln52 == 1)> <Delay = 0.00>
+ST_12 : Operation 88 [1/1] (1.64ns)   --->   "%store_ln58 = store i32 0, i12 %water_level_addr" [flood_HLS_base.cpp:58]   --->   Operation 88 'store' 'store_ln58' <Predicate = (trunc_ln52 == 0)> <Delay = 1.64> <CoreInst = "RAM_1WnR">   --->   Core 83 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 1.64> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 2700> <RAM>
+ST_12 : Operation 89 [1/1] (0.00ns)   --->   "%br_ln58 = br void %arrayidx597.exit" [flood_HLS_base.cpp:58]   --->   Operation 89 'br' 'br_ln58' <Predicate = (trunc_ln52 == 0)> <Delay = 0.00>
+ST_12 : Operation 90 [1/1] (1.64ns)   --->   "%store_ln58 = store i32 0, i12 %water_level_2_addr" [flood_HLS_base.cpp:58]   --->   Operation 90 'store' 'store_ln58' <Predicate = (trunc_ln52 != 0 & trunc_ln52 != 1)> <Delay = 1.64> <CoreInst = "RAM_1WnR">   --->   Core 83 'RAM_1WnR' <Latency = 1> <II = 1> <Delay = 1.64> <Storage> <Opcode : 'load' 'store'> <Ports = 17> <Width = 32> <Depth = 2700> <RAM>
+ST_12 : Operation 91 [1/1] (0.00ns)   --->   "%br_ln58 = br void %arrayidx597.exit" [flood_HLS_base.cpp:58]   --->   Operation 91 'br' 'br_ln58' <Predicate = (trunc_ln52 != 0 & trunc_ln52 != 1)> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 4.000ns, clock uncertainty: 1.080ns.
+
+ <State 1>: 2.615ns
+The critical path consists of the following:
+	'store' operation 0 bit ('store_ln52', flood_HLS_base.cpp:52) of constant 0 on local variable 'col_pos', flood_HLS_base.cpp:52 [15]  (0.387 ns)
+	'load' operation 7 bit ('col_pos_load', flood_HLS_base.cpp:54) on local variable 'col_pos', flood_HLS_base.cpp:52 [23]  (0.000 ns)
+	'icmp' operation 1 bit ('icmp_ln54', flood_HLS_base.cpp:54) [28]  (0.706 ns)
+	'select' operation 7 bit ('select_ln52', flood_HLS_base.cpp:52) [29]  (0.308 ns)
+	'urem' operation 2 bit ('urem_ln52', flood_HLS_base.cpp:52) [56]  (1.214 ns)
+
+ <State 2>: 1.214ns
+The critical path consists of the following:
+	'urem' operation 2 bit ('urem_ln52', flood_HLS_base.cpp:52) [56]  (1.214 ns)
+
+ <State 3>: 2.216ns
+The critical path consists of the following:
+	'mul' operation 15 bit ('mul_ln52', flood_HLS_base.cpp:52) [48]  (1.460 ns)
+	'add' operation 12 bit ('add_ln58', flood_HLS_base.cpp:58) [51]  (0.756 ns)
+
+ <State 4>: 1.893ns
+The critical path consists of the following:
+	'add' operation 13 bit of DSP[38] ('add_ln59', flood_HLS_base.cpp:59) [38]  (0.645 ns)
+	'getelementptr' operation 13 bit ('spillage_flag_addr', flood_HLS_base.cpp:59) [40]  (0.000 ns)
+	'store' operation 0 bit ('store_ln59', flood_HLS_base.cpp:59) of constant 0 on array 'spillage_flag' [69]  (1.248 ns)
+
+ <State 5>: 1.214ns
+The critical path consists of the following:
+	'urem' operation 2 bit ('urem_ln52', flood_HLS_base.cpp:52) [56]  (1.214 ns)
+
+ <State 6>: 1.214ns
+The critical path consists of the following:
+	'urem' operation 2 bit ('urem_ln52', flood_HLS_base.cpp:52) [56]  (1.214 ns)
+
+ <State 7>: 1.214ns
+The critical path consists of the following:
+	'urem' operation 2 bit ('urem_ln52', flood_HLS_base.cpp:52) [56]  (1.214 ns)
+
+ <State 8>: 1.214ns
+The critical path consists of the following:
+	'urem' operation 2 bit ('urem_ln52', flood_HLS_base.cpp:52) [56]  (1.214 ns)
+
+ <State 9>: 1.214ns
+The critical path consists of the following:
+	'urem' operation 2 bit ('urem_ln52', flood_HLS_base.cpp:52) [56]  (1.214 ns)
+
+ <State 10>: 1.214ns
+The critical path consists of the following:
+	'urem' operation 2 bit ('urem_ln52', flood_HLS_base.cpp:52) [56]  (1.214 ns)
+
+ <State 11>: 1.881ns
+The critical path consists of the following:
+	'urem' operation 2 bit ('urem_ln52', flood_HLS_base.cpp:52) [56]  (1.214 ns)
+	blocking operation 0.666906 ns on control path)
+
+ <State 12>: 1.645ns
+The critical path consists of the following:
+	'getelementptr' operation 12 bit ('water_level_1_addr', flood_HLS_base.cpp:58) [54]  (0.000 ns)
+	'store' operation 0 bit ('store_ln58', flood_HLS_base.cpp:58) of constant 0 on array 'water_level_1' [60]  (1.645 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

@@ -1,0 +1,69 @@
+{
+  "0": {
+    "basicblocks": 94,
+    "calls": "3 3 4 4 4 4 4 4 4 4 4 4 4 4",
+    "file": "flood_HLS_base.cpp",
+    "fileloc": 25,
+    "instructions": 737,
+    "loads": {
+      "L": 42,
+      "T": 16
+    },
+    "name": "do_compute",
+    "stores": {
+      "L": 27,
+      "T": 10
+    },
+    "total_instructions": 2059
+  },
+  "1": {
+    "basicblocks": 15,
+    "calls": "",
+    "file": "hls_pow.h",
+    "fileloc": 186,
+    "instructions": 224,
+    "loads": {
+      "G": 7,
+      "L": 1
+    },
+    "name": "log_range_reduction<71>",
+    "stores": {
+      "L": 15
+    },
+    "total_instructions": 224
+  },
+  "2": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "x_hls_utils.h",
+    "fileloc": 509,
+    "instructions": 5,
+    "name": "to_ieee",
+    "total_instructions": 5
+  },
+  "3": {
+    "basicblocks": 21,
+    "calls": "2 2 2 2 2 1 2 2 2 2",
+    "file": "hls_pow.h",
+    "fileloc": 291,
+    "instructions": 234,
+    "loads": {
+      "G": 6,
+      "L": 2
+    },
+    "name": "pow_generic<double>",
+    "stores": {
+      "L": 1
+    },
+    "total_instructions": 503
+  },
+  "4": {
+    "basicblocks": 1,
+    "calls": "",
+    "file": "lib_floatconversion.cpp",
+    "fileloc": 51,
+    "instructions": 24,
+    "name": "__hls_fptosi_float_i32",
+    "total_instructions": 24
+  }
+}

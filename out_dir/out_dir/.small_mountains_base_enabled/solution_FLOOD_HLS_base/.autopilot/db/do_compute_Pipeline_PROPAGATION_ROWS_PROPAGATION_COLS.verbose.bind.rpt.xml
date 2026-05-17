@@ -1,0 +1,49 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'do_compute_Pipeline_PROPAGATION_ROWS_PROPAGATION_COLS'" level="0">
+<item name = "Date">Sun May 17 18:42:46 2026
+</item>
+<item name = "Version">2024.1 (Build 5069499 on May 21 2024)</item>
+<item name = "Project">.small_mountains_base_enabled</item>
+<item name = "Solution">solution_FLOOD_HLS_base (Vivado IP Flow Target)</item>
+<item name = "Product family">virtexuplusHBM</item>
+<item name = "Target device">xcu50-fsvh2104-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">4.00 ns, 2.897 ns, 1.08 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">9617, 9617, 38.468 us, 38.468 us, 9602, 9602, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_p_hls_fptosi_float_i32_fu_317">p_hls_fptosi_float_i32, 1, 1, 4.000 ns, 4.000 ns, 1, 1, yes</column>
+<column name="grp_p_hls_fptosi_float_i32_fu_322">p_hls_fptosi_float_i32, 1, 1, 4.000 ns, 4.000 ns, 1, 1, yes</column>
+<column name="grp_p_hls_fptosi_float_i32_fu_327">p_hls_fptosi_float_i32, 1, 1, 4.000 ns, 4.000 ns, 1, 1, yes</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- PROPAGATION_ROWS_PROPAGATION_COLS">9615, 9615, 18, 2, 1, 4800, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

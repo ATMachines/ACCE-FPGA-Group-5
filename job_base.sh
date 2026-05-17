@@ -1,5 +1,4 @@
 #!/bin/sh
-#SBATCH --time=00:45:00         
 #SBATCH --nodes=1              
 #SBATCH --constraint=cpunode
 

@@ -1,0 +1,194 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'do_compute_Pipeline_VITIS_LOOP_53_1_VITIS_LOOP_54_2'" level="0">
+<item name = "Date">Sun May 17 15:55:02 2026
+</item>
+<item name = "Version">2024.1 (Build 5069499 on May 21 2024)</item>
+<item name = "Project">.tiny_dam_base_enabled</item>
+<item name = "Solution">solution_FLOOD_HLS_base (Vivado IP Flow Target)</item>
+<item name = "Product family">virtexuplusHBM</item>
+<item name = "Target device">xcu50-fsvh2104-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">4.00 ns, 2.892 ns, 1.08 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">2510, 2510, 10.040 us, 10.040 us, 2501, 2501, loop auto-rewind stp(delay=0 clock cycles(s))</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- VITIS_LOOP_53_1_VITIS_LOOP_54_2">2508, 2508, 10, 1, 1, 2500, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="DSP">-, 1, -, -, -</column>
+<column name="Expression">-, -, 0, 127, -</column>
+<column name="FIFO">-, -, -, -, -</column>
+<column name="Instance">-, 0, 128, 108, -</column>
+<column name="Memory">-, -, -, -, -</column>
+<column name="Multiplexer">-, -, 0, 72, -</column>
+<column name="Register">-, -, 199, 64, -</column>
+<specialColumn name="Available SLR">1344, 2976, 871680, 435840, 320</specialColumn>
+<specialColumn name="Utilization SLR (%)">0, ~0, ~0, ~0, 0</specialColumn>
+<specialColumn name="Available">2688, 5952, 1743360, 871680, 640</specialColumn>
+<specialColumn name="Utilization (%)">0, ~0, ~0, ~0, 0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="mul_6ns_8ns_13_1_1_U2">mul_6ns_8ns_13_1_1, 0, 0, 0, 40, 0</column>
+<column name="urem_6ns_3ns_2_10_1_U1">urem_6ns_3ns_2_10_1, 0, 0, 128, 68, 0</column>
+</table>
+</item>
+<item name = "DSP"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+<column name="mac_muladd_6ns_6ns_6ns_12_4_1_U3">mac_muladd_6ns_6ns_6ns_12_4_1, i0 * i1 + i2</column>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="10">Memory, Module, BRAM_18K, FF, LUT, URAM, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="8">Name, BRAM_18K, FF, LUT, URAM, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="add_ln53_1_fu_234_p2">+, 0, 0, 19, 12, 1</column>
+<column name="add_ln53_fu_246_p2">+, 0, 0, 13, 6, 1</column>
+<column name="add_ln54_fu_284_p2">+, 0, 0, 13, 6, 1</column>
+<column name="add_ln58_fu_347_p2">+, 0, 0, 18, 10, 10</column>
+<column name="add_ln59_1_fu_315_p2">+, 0, 0, 18, 10, 10</column>
+<column name="icmp_ln53_fu_228_p2">icmp, 0, 0, 19, 12, 12</column>
+<column name="icmp_ln54_fu_252_p2">icmp, 0, 0, 13, 6, 5</column>
+<column name="select_ln52_fu_258_p3">select, 0, 0, 6, 1, 1</column>
+<column name="select_ln53_fu_266_p3">select, 0, 0, 6, 1, 6</column>
+<column name="ap_enable_pp0">xor, 0, 0, 2, 1, 2</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_done_int">9, 2, 1, 2</column>
+<column name="ap_enable_reg_pp0_iter1">9, 2, 1, 2</column>
+<column name="ap_sig_allocacmp_col_pos_load">9, 2, 6, 12</column>
+<column name="ap_sig_allocacmp_indvar_flatten_load">9, 2, 12, 24</column>
+<column name="ap_sig_allocacmp_row_pos_load">9, 2, 6, 12</column>
+<column name="col_pos_fu_72">9, 2, 6, 12</column>
+<column name="indvar_flatten_fu_80">9, 2, 12, 24</column>
+<column name="row_pos_fu_76">9, 2, 6, 12</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="add_ln58_reg_429">10, 0, 10, 0</column>
+<column name="ap_CS_fsm">1, 0, 1, 0</column>
+<column name="ap_done_reg">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter1">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter2">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter3">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter4">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter5">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter6">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter7">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter8">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter9">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter1_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter2_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter3_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter4_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter5_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter6_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter7_reg">1, 0, 1, 0</column>
+<column name="ap_loop_exit_ready_pp0_iter8_reg">1, 0, 1, 0</column>
+<column name="col_pos_fu_72">6, 0, 6, 0</column>
+<column name="indvar_flatten_fu_80">12, 0, 12, 0</column>
+<column name="row_pos_fu_76">6, 0, 6, 0</column>
+<column name="select_ln52_reg_406">6, 0, 6, 0</column>
+<column name="select_ln53_reg_413">6, 0, 6, 0</column>
+<column name="select_ln53_reg_413_pp0_iter1_reg">6, 0, 6, 0</column>
+<column name="add_ln58_reg_429">64, 32, 10, 0</column>
+<column name="select_ln52_reg_406">64, 32, 6, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, do_compute_Pipeline_VITIS_LOOP_53_1_VITIS_LOOP_54_2, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, do_compute_Pipeline_VITIS_LOOP_53_1_VITIS_LOOP_54_2, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, do_compute_Pipeline_VITIS_LOOP_53_1_VITIS_LOOP_54_2, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, do_compute_Pipeline_VITIS_LOOP_53_1_VITIS_LOOP_54_2, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, do_compute_Pipeline_VITIS_LOOP_53_1_VITIS_LOOP_54_2, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, do_compute_Pipeline_VITIS_LOOP_53_1_VITIS_LOOP_54_2, return value</column>
+<column name="spillage_flag_address0">out, 12, ap_memory, spillage_flag, array</column>
+<column name="spillage_flag_ce0">out, 1, ap_memory, spillage_flag, array</column>
+<column name="spillage_flag_we0">out, 1, ap_memory, spillage_flag, array</column>
+<column name="spillage_flag_d0">out, 32, ap_memory, spillage_flag, array</column>
+<column name="spillage_level_address0">out, 12, ap_memory, spillage_level, array</column>
+<column name="spillage_level_ce0">out, 1, ap_memory, spillage_level, array</column>
+<column name="spillage_level_we0">out, 1, ap_memory, spillage_level, array</column>
+<column name="spillage_level_d0">out, 32, ap_memory, spillage_level, array</column>
+<column name="spillage_from_neigh_address0">out, 12, ap_memory, spillage_from_neigh, array</column>
+<column name="spillage_from_neigh_ce0">out, 1, ap_memory, spillage_from_neigh, array</column>
+<column name="spillage_from_neigh_we0">out, 1, ap_memory, spillage_from_neigh, array</column>
+<column name="spillage_from_neigh_d0">out, 32, ap_memory, spillage_from_neigh, array</column>
+<column name="spillage_from_neigh_1_address0">out, 12, ap_memory, spillage_from_neigh_1, array</column>
+<column name="spillage_from_neigh_1_ce0">out, 1, ap_memory, spillage_from_neigh_1, array</column>
+<column name="spillage_from_neigh_1_we0">out, 1, ap_memory, spillage_from_neigh_1, array</column>
+<column name="spillage_from_neigh_1_d0">out, 32, ap_memory, spillage_from_neigh_1, array</column>
+<column name="spillage_from_neigh_2_address0">out, 12, ap_memory, spillage_from_neigh_2, array</column>
+<column name="spillage_from_neigh_2_ce0">out, 1, ap_memory, spillage_from_neigh_2, array</column>
+<column name="spillage_from_neigh_2_we0">out, 1, ap_memory, spillage_from_neigh_2, array</column>
+<column name="spillage_from_neigh_2_d0">out, 32, ap_memory, spillage_from_neigh_2, array</column>
+<column name="spillage_from_neigh_3_address0">out, 12, ap_memory, spillage_from_neigh_3, array</column>
+<column name="spillage_from_neigh_3_ce0">out, 1, ap_memory, spillage_from_neigh_3, array</column>
+<column name="spillage_from_neigh_3_we0">out, 1, ap_memory, spillage_from_neigh_3, array</column>
+<column name="spillage_from_neigh_3_d0">out, 32, ap_memory, spillage_from_neigh_3, array</column>
+<column name="water_level_address0">out, 10, ap_memory, water_level, array</column>
+<column name="water_level_ce0">out, 1, ap_memory, water_level, array</column>
+<column name="water_level_we0">out, 1, ap_memory, water_level, array</column>
+<column name="water_level_d0">out, 32, ap_memory, water_level, array</column>
+<column name="water_level_1_address0">out, 10, ap_memory, water_level_1, array</column>
+<column name="water_level_1_ce0">out, 1, ap_memory, water_level_1, array</column>
+<column name="water_level_1_we0">out, 1, ap_memory, water_level_1, array</column>
+<column name="water_level_1_d0">out, 32, ap_memory, water_level_1, array</column>
+<column name="water_level_2_address0">out, 10, ap_memory, water_level_2, array</column>
+<column name="water_level_2_ce0">out, 1, ap_memory, water_level_2, array</column>
+<column name="water_level_2_we0">out, 1, ap_memory, water_level_2, array</column>
+<column name="water_level_2_d0">out, 32, ap_memory, water_level_2, array</column>
+</table>
+</item>
+</section>
+</profile>

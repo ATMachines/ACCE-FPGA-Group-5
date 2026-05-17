@@ -1,0 +1,13 @@
+---
+MainSourceFile:  /home/acce2632/acce-fpga/.small_mountains_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/rng.pp.0.cpp
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_80_1:  '
+    FileOffset:      80
+    FilePath:        rng.cpp
+    Replacements:    
+      - FilePath:        /home/acce2632/acce-fpga/.small_mountains_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/rng.pp.0.cpp
+        Offset:          175963
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_80_1: '
+...

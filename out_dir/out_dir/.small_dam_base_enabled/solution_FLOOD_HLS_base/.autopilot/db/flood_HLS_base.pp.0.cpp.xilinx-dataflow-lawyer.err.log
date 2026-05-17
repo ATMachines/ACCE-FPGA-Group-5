@@ -1,0 +1,5 @@
+comparison of array 'water_level' equal to a null pointer is always false
+comparison of array 'spillage_flag' equal to a null pointer is always false
+comparison of array 'spillage_level' equal to a null pointer is always false
+comparison of array 'spillage_from_neigh' equal to a null pointer is always false
+4 warnings generated.

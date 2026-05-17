@@ -1,0 +1,157 @@
+---
+MainSourceFile:  /home/acce2632/acce-fpga/.tiny_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_53_1:  '
+    FileOffset:      53
+    FilePath:        flood_HLS_base.cpp
+    Replacements:    
+      - FilePath:        /home/acce2632/acce-fpga/.tiny_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp
+        Offset:          191436
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_53_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_54_2:  '
+    FileOffset:      54
+    FilePath:        flood_HLS_base.cpp
+    Replacements:    
+      - FilePath:        /home/acce2632/acce-fpga/.tiny_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp
+        Offset:          191489
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_54_2: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_63_3:  '
+    FileOffset:      63
+    FilePath:        flood_HLS_base.cpp
+    Replacements:    
+      - FilePath:        /home/acce2632/acce-fpga/.tiny_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp
+        Offset:          191728
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_63_3: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_70_4:  '
+    FileOffset:      70
+    FilePath:        flood_HLS_base.cpp
+    Replacements:    
+      - FilePath:        /home/acce2632/acce-fpga/.tiny_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp
+        Offset:          191876
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_70_4: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_76_5:  '
+    FileOffset:      76
+    FilePath:        flood_HLS_base.cpp
+    Replacements:    
+      - FilePath:        /home/acce2632/acce-fpga/.tiny_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp
+        Offset:          192038
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_76_5: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_83_6:  '
+    FileOffset:      83
+    FilePath:        flood_HLS_base.cpp
+    Replacements:    
+      - FilePath:        /home/acce2632/acce-fpga/.tiny_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp
+        Offset:          192221
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_83_6: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_92_7:  '
+    FileOffset:      92
+    FilePath:        flood_HLS_base.cpp
+    Replacements:    
+      - FilePath:        /home/acce2632/acce-fpga/.tiny_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp
+        Offset:          193045
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_92_7: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_93_8:  '
+    FileOffset:      93
+    FilePath:        flood_HLS_base.cpp
+    Replacements:    
+      - FilePath:        /home/acce2632/acce-fpga/.tiny_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp
+        Offset:          193119
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_93_8: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_109_9:  '
+    FileOffset:      109
+    FilePath:        flood_HLS_base.cpp
+    Replacements:    
+      - FilePath:        /home/acce2632/acce-fpga/.tiny_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp
+        Offset:          194107
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_109_9: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_110_10:  '
+    FileOffset:      110
+    FilePath:        flood_HLS_base.cpp
+    Replacements:    
+      - FilePath:        /home/acce2632/acce-fpga/.tiny_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp
+        Offset:          194164
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_110_10: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_121_11:  '
+    FileOffset:      121
+    FilePath:        flood_HLS_base.cpp
+    Replacements:    
+      - FilePath:        /home/acce2632/acce-fpga/.tiny_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp
+        Offset:          194529
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_121_11: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_156_12:  '
+    FileOffset:      156
+    FilePath:        flood_HLS_base.cpp
+    Replacements:    
+      - FilePath:        /home/acce2632/acce-fpga/.tiny_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp
+        Offset:          196011
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_156_12: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_234_13:  '
+    FileOffset:      234
+    FilePath:        flood_HLS_base.cpp
+    Replacements:    
+      - FilePath:        /home/acce2632/acce-fpga/.tiny_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp
+        Offset:          198682
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_234_13: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_235_14:  '
+    FileOffset:      235
+    FilePath:        flood_HLS_base.cpp
+    Replacements:    
+      - FilePath:        /home/acce2632/acce-fpga/.tiny_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp
+        Offset:          198739
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_235_14: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_236_15:  '
+    FileOffset:      236
+    FilePath:        flood_HLS_base.cpp
+    Replacements:    
+      - FilePath:        /home/acce2632/acce-fpga/.tiny_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp
+        Offset:          198800
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_236_15: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_249_16:  '
+    FileOffset:      249
+    FilePath:        flood_HLS_base.cpp
+    Replacements:    
+      - FilePath:        /home/acce2632/acce-fpga/.tiny_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp
+        Offset:          199151
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_249_16: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_250_17:  '
+    FileOffset:      250
+    FilePath:        flood_HLS_base.cpp
+    Replacements:    
+      - FilePath:        /home/acce2632/acce-fpga/.tiny_dam_base_enabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp
+        Offset:          199204
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_250_17: '
+...

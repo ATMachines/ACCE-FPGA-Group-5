@@ -1,0 +1,85 @@
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7314:5: warning: Added loop label VITIS_LOOP_53_1:   [xilinx-label-all-loops]
+    for (row_pos = 0; row_pos < 60; row_pos++) {
+    ^~~
+    VITIS_LOOP_53_1: 
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7314:5: note: FIX-IT applied suggested code changes
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7315:9: warning: Added loop label VITIS_LOOP_54_2:   [xilinx-label-all-loops]
+        for (col_pos = 0; col_pos < 80; col_pos++) {
+        ^~~
+        VITIS_LOOP_54_2: 
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7315:9: note: FIX-IT applied suggested code changes
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7324:13: warning: Added loop label VITIS_LOOP_63_3:   [xilinx-label-all-loops]
+            for (depth_pos = 0; depth_pos < depths; depth_pos++)
+            ^~~
+            VITIS_LOOP_63_3: 
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7324:13: note: FIX-IT applied suggested code changes
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7331:5: warning: Added loop label VITIS_LOOP_70_4:   [xilinx-label-all-loops]
+    for (r->minute = 0; r->minute < p->num_minutes && max_spillage_iter > p->threshold; r->minute++) {
+    ^~~
+    VITIS_LOOP_70_4: 
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7331:5: note: FIX-IT applied suggested code changes
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7337:9: warning: Added loop label VITIS_LOOP_76_5:   [xilinx-label-all-loops]
+        for (int cloud = 0; cloud < 9; cloud++) {
+        ^~~
+        VITIS_LOOP_76_5: 
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7337:9: note: FIX-IT applied suggested code changes
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7344:9: warning: Added loop label VITIS_LOOP_83_6:   [xilinx-label-all-loops]
+        for (int cloud = 0; cloud < 9; cloud++) {
+        ^~~
+        VITIS_LOOP_83_6: 
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7344:9: note: FIX-IT applied suggested code changes
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7353:13: warning: Added loop label VITIS_LOOP_92_7:   [xilinx-label-all-loops]
+            for (row_pos = row_start; row_pos < row_end; row_pos++) {
+            ^~~
+            VITIS_LOOP_92_7: 
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7353:13: note: FIX-IT applied suggested code changes
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7354:17: warning: Added loop label VITIS_LOOP_93_8:   [xilinx-label-all-loops]
+                for (col_pos = col_start; col_pos < col_end; col_pos++) {
+                ^~~
+                VITIS_LOOP_93_8: 
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7354:17: note: FIX-IT applied suggested code changes
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7370:9: warning: Added loop label VITIS_LOOP_109_9:   [xilinx-label-all-loops]
+        for (row_pos = 0; row_pos < 60; row_pos++) {
+        ^~~
+        VITIS_LOOP_109_9: 
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7370:9: note: FIX-IT applied suggested code changes
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7371:13: warning: Added loop label VITIS_LOOP_110_10:   [xilinx-label-all-loops]
+            for (col_pos = 0; col_pos < 80; col_pos++) {
+            ^~~
+            VITIS_LOOP_110_10: 
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7371:13: note: FIX-IT applied suggested code changes
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7382:21: warning: Added loop label VITIS_LOOP_121_11:   [xilinx-label-all-loops]
+                    for (cell_pos = 0; cell_pos < 4; cell_pos++) {
+                    ^~~
+                    VITIS_LOOP_121_11: 
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7382:21: note: FIX-IT applied suggested code changes
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7417:29: warning: Added loop label VITIS_LOOP_156_12:   [xilinx-label-all-loops]
+                            for (cell_pos = 0; cell_pos < 4; cell_pos++) {
+                            ^~~
+                            VITIS_LOOP_156_12: 
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7417:29: note: FIX-IT applied suggested code changes
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7495:9: warning: Added loop label VITIS_LOOP_234_13:   [xilinx-label-all-loops]
+        for (row_pos = 0; row_pos < 60; row_pos++) {
+        ^~~
+        VITIS_LOOP_234_13: 
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7495:9: note: FIX-IT applied suggested code changes
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7496:13: warning: Added loop label VITIS_LOOP_235_14:   [xilinx-label-all-loops]
+            for (col_pos = 0; col_pos < 80; col_pos++) {
+            ^~~
+            VITIS_LOOP_235_14: 
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7496:13: note: FIX-IT applied suggested code changes
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7497:17: warning: Added loop label VITIS_LOOP_236_15:   [xilinx-label-all-loops]
+                for (cell_pos = 0; cell_pos < 4; cell_pos++) {
+                ^~~
+                VITIS_LOOP_236_15: 
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7497:17: note: FIX-IT applied suggested code changes
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7510:5: warning: Added loop label VITIS_LOOP_249_16:   [xilinx-label-all-loops]
+    for (row_pos = 0; row_pos < 60; row_pos++) {
+    ^~~
+    VITIS_LOOP_249_16: 
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7510:5: note: FIX-IT applied suggested code changes
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7511:9: warning: Added loop label VITIS_LOOP_250_17:   [xilinx-label-all-loops]
+        for (col_pos = 0; col_pos < 80; col_pos++) {
+        ^~~
+        VITIS_LOOP_250_17: 
+/home/acce2632/acce-fpga/.small_mountains_base_disabled/solution_FLOOD_HLS_base/.autopilot/db/flood_HLS_base.pp.0.cpp:7511:9: note: FIX-IT applied suggested code changes

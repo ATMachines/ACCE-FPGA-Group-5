@@ -1,0 +1,173 @@
+{
+    "1": {
+        "name": "__hls_fptosi_float_i32",
+        "file": "lib_floatconversion.cpp",
+        "fileloc": "51",
+        "instructions": "23",
+        "total_instructions": "23",
+        "calls": "",
+        "basicblocks": "1"
+    },
+    "2": {
+        "name": "pow_generic<double>",
+        "file": "hls_pow.h",
+        "fileloc": "291",
+        "instructions": "300",
+        "total_instructions": "300",
+        "calls": "",
+        "basicblocks": "1",
+        "loads": {
+            "G": "13"
+        }
+    },
+    "3": {
+        "name": "do_compute_Pipeline_VITIS_LOOP_53_1_VITIS_LOOP_54_2",
+        "file": "flood_HLS_base.cpp",
+        "fileloc": "52",
+        "instructions": "64",
+        "total_instructions": "64",
+        "calls": "",
+        "basicblocks": "8",
+        "loads": {
+            "L": "3"
+        },
+        "stores": {
+            "L": "15"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "4": {
+        "name": "do_compute_Pipeline_VITIS_LOOP_76_5",
+        "file": "flood_HLS_base.cpp",
+        "fileloc": "76",
+        "instructions": "34",
+        "total_instructions": "34",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "1",
+            "T": "1"
+        },
+        "stores": {
+            "L": "2",
+            "T": "1"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "5": {
+        "name": "do_compute_Pipeline_VITIS_LOOP_93_8",
+        "file": "flood_HLS_base.cpp",
+        "fileloc": "85",
+        "instructions": "130",
+        "total_instructions": "799",
+        "calls": "2 2 1 1 1",
+        "basicblocks": "10",
+        "loads": {
+            "L": "7",
+            "T": "1"
+        },
+        "stores": {
+            "L": "7"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "6": {
+        "name": "do_compute_Pipeline_PROPAGATION_ROWS_PROPAGATION_COLS",
+        "file": "flood_HLS_base.cpp",
+        "fileloc": "27",
+        "instructions": "140",
+        "total_instructions": "255",
+        "calls": "1 1 1 1 1",
+        "basicblocks": "11",
+        "loads": {
+            "L": "14"
+        },
+        "stores": {
+            "L": "14"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "7": {
+        "name": "do_compute_Pipeline_VITIS_LOOP_249_16_VITIS_LOOP_250_17",
+        "file": "flood_HLS_base.cpp",
+        "fileloc": "52",
+        "instructions": "77",
+        "total_instructions": "77",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "10"
+        },
+        "stores": {
+            "L": "10"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "0": {
+        "name": "do_compute",
+        "file": "flood_HLS_base.cpp",
+        "fileloc": "25",
+        "instructions": "183",
+        "total_instructions": "1991",
+        "calls": "3 4 9 6 8 5 7",
+        "basicblocks": "10",
+        "loads": {
+            "L": "7",
+            "T": "1"
+        },
+        "stores": {
+            "L": "4"
+        },
+        "loops": {
+            "L": "1",
+            "N": "2"
+        }
+    },
+    "8": {
+        "name": "do_compute_Pipeline_VITIS_LOOP_234_13_VITIS_LOOP_235_14",
+        "file": "flood_HLS_base.cpp",
+        "fileloc": "52",
+        "instructions": "43",
+        "total_instructions": "43",
+        "calls": "",
+        "basicblocks": "4",
+        "loads": {
+            "L": "3"
+        },
+        "stores": {
+            "L": "12"
+        },
+        "loops": {
+            "L": "1"
+        }
+    },
+    "9": {
+        "name": "do_compute_Pipeline_VITIS_LOOP_109_9_VITIS_LOOP_110_10",
+        "file": "flood_HLS_base.cpp",
+        "fileloc": "52",
+        "instructions": "444",
+        "total_instructions": "536",
+        "calls": "1 1 1 1",
+        "basicblocks": "32",
+        "loads": {
+            "L": "19",
+            "T": "5"
+        },
+        "stores": {
+            "L": "16"
+        },
+        "loops": {
+            "L": "1"
+        }
+    }
+}

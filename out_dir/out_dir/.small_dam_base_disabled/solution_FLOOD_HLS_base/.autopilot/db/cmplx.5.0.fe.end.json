@@ -1,0 +1,36 @@
+{
+    "1": {
+        "name": "pow_generic<double>",
+        "file": "hls_pow.h",
+        "fileloc": "291",
+        "instructions": "300",
+        "total_instructions": "300",
+        "calls": "",
+        "basicblocks": "1",
+        "loads": {
+            "G": "13"
+        }
+    },
+    "0": {
+        "name": "do_compute",
+        "file": "flood_HLS_base.cpp",
+        "fileloc": "25",
+        "instructions": "861",
+        "total_instructions": "1461",
+        "calls": "1 1",
+        "basicblocks": "73",
+        "loads": {
+            "G": "4",
+            "L": "20",
+            "T": "5"
+        },
+        "stores": {
+            "L": "30",
+            "T": "1"
+        },
+        "loops": {
+            "L": "3",
+            "N": "17"
+        }
+    }
+}

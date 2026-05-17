@@ -1,0 +1,6 @@
+<VitisHLS:BurstInfo>
+    <burst group="BURST_VERBOSE_MISSED" fe_name="CouldNotAnalyzeBoundsPatternMissed" src_info="flood_HLS_base.cpp:93:34" msg_id="214-252" msg_severity="INFO" msg_body="Could not analyze the loop bounds" resolution="214-252" LoopLoc="flood_HLS_base.cpp:93:34" LoopName="VITIS_LOOP_93_8" ParentFunc="do_compute(parameters*, results*)"/>
+    <burst group="BURST_VERBOSE_MISSED" fe_name="CouldNotAnalyzeBoundsPatternMissed" src_info="flood_HLS_base.cpp:92:30" msg_id="214-252" msg_severity="INFO" msg_body="Could not analyze the loop bounds" resolution="214-252" LoopLoc="flood_HLS_base.cpp:92:30" LoopName="VITIS_LOOP_92_7" ParentFunc="do_compute(parameters*, results*)"/>
+    <burst group="BURST_VERBOSE_MISSED" fe_name="CouldNotAnalyzeBoundsPatternMissed" src_info="flood_HLS_base.cpp:70:22" msg_id="214-252" msg_severity="INFO" msg_body="Could not analyze the loop bounds" resolution="214-252" LoopLoc="flood_HLS_base.cpp:70:22" LoopName="VITIS_LOOP_70_4" ParentFunc="do_compute(parameters*, results*)"/>
+</VitisHLS:BurstInfo>
+

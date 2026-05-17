@@ -1,0 +1,16 @@
+/home/acce2632/acce-fpga/run_FLOOD_HLS_base.tcl:39:9: warning: HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=top_XLX_SEP_ PragmaContext=directive_XLX_SEP_ PragmaFunction=do_compute_XLX_SEP_ PragmaOptions=name=do_compute_XLX_SEP_ [-Wdump-hls-pragmas]
+#pragma HLSDIRECTIVE TOP name=do_compute
+        ^
+flood_HLS_base.cpp:46:9: warning: comparison of array 'water_level' equal to a null pointer is always false [-Wtautological-pointer-compare]
+    if (water_level == __null || spillage_flag == __null || spillage_level == __null || spillage_from_neigh == __null) {
+        ^~~~~~~~~~~    ~~~~~~
+flood_HLS_base.cpp:46:34: warning: comparison of array 'spillage_flag' equal to a null pointer is always false [-Wtautological-pointer-compare]
+    if (water_level == __null || spillage_flag == __null || spillage_level == __null || spillage_from_neigh == __null) {
+                                 ^~~~~~~~~~~~~    ~~~~~~
+flood_HLS_base.cpp:46:61: warning: comparison of array 'spillage_level' equal to a null pointer is always false [-Wtautological-pointer-compare]
+    if (water_level == __null || spillage_flag == __null || spillage_level == __null || spillage_from_neigh == __null) {
+                                                            ^~~~~~~~~~~~~~    ~~~~~~
+flood_HLS_base.cpp:46:89: warning: comparison of array 'spillage_from_neigh' equal to a null pointer is always false [-Wtautological-pointer-compare]
+    if (water_level == __null || spillage_flag == __null || spillage_level == __null || spillage_from_neigh == __null) {
+                                                                                        ^~~~~~~~~~~~~~~~~~~    ~~~~~~
+5 warnings generated.

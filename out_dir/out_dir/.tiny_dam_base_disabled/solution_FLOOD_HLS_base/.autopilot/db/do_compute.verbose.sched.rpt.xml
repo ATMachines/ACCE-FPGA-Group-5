@@ -1,0 +1,65 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'do_compute'" level="0">
+<item name = "Date">Sun May 17 16:14:33 2026
+</item>
+<item name = "Version">2024.1 (Build 5069499 on May 21 2024)</item>
+<item name = "Project">.tiny_dam_base_disabled</item>
+<item name = "Solution">solution_FLOOD_HLS_base (Vivado IP Flow Target)</item>
+<item name = "Product family">virtexuplusHBM</item>
+<item name = "Target device">xcu50-fsvh2104-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">4.00 ns, 2.916 ns, 1.08 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">?, ?, ?, ?, ?, ?, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- VITIS_LOOP_53_1">15100, 15100, 302, -, -, 50, no</column>
+<column name=" + VITIS_LOOP_54_2">300, 300, 6, -, -, 50, no</column>
+<column name="  ++ VITIS_LOOP_63_3">4, 4, 1, -, -, 4, no</column>
+<column name="- VITIS_LOOP_70_4">?, ?, ?, -, -, ?, no</column>
+<column name=" + VITIS_LOOP_76_5">154, 154, 22, -, -, 7, no</column>
+<column name=" + VITIS_LOOP_83_6">?, ?, ?, -, -, 7, no</column>
+<column name="  ++ VITIS_LOOP_92_7">?, ?, ?, -, -, ?, no</column>
+<column name="   +++ VITIS_LOOP_93_8">?, ?, 137 ~ 195, -, -, ?, no</column>
+<column name=" + VITIS_LOOP_109_9">7600, 1020100, 152 ~ 20402, -, -, 50, no</column>
+<column name="  ++ VITIS_LOOP_110_10">150, 20400, 3 ~ 408, -, -, 50, no</column>
+<column name="   +++ VITIS_LOOP_121_11">172, 172, 43, -, -, 4, no</column>
+<column name="   +++ VITIS_LOOP_156_12">12, 172, 3 ~ 43, -, -, 4, no</column>
+<column name=" + PROPAGATION_ROWS">152600, 152600, 3052, -, -, 50, no</column>
+<column name="  ++ PROPAGATION_COLS">3050, 3050, 61, -, -, 50, no</column>
+<column name="   +++ NEIGHBOR_ACCUM">48, 48, 12, -, -, 4, no</column>
+<column name=" + VITIS_LOOP_234_13">15100, 15100, 302, -, -, 50, no</column>
+<column name="  ++ VITIS_LOOP_235_14">300, 300, 6, -, -, 50, no</column>
+<column name="   +++ VITIS_LOOP_236_15">4, 4, 1, -, -, 4, no</column>
+<column name="- VITIS_LOOP_249_16">50100, 50100, 1002, -, -, 50, no</column>
+<column name=" + VITIS_LOOP_250_17">1000, 1000, 20, -, -, 50, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

@@ -1,0 +1,67 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'do_compute'" level="0">
+<item name = "Date">Sun May 17 18:41:05 2026
+</item>
+<item name = "Version">2024.1 (Build 5069499 on May 21 2024)</item>
+<item name = "Project">.small_dam_base_disabled</item>
+<item name = "Solution">solution_FLOOD_HLS_base (Vivado IP Flow Target)</item>
+<item name = "Product family">virtexuplusHBM</item>
+<item name = "Target device">xcu50-fsvh2104-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">4.00 ns, 2.916 ns, 1.08 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">?, ?, ?, ?, ?, ?, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_pow_generic_double_s_fu_1056">pow_generic_double_s, 72, 72, 0.288 us, 0.288 us, 1, 1, yes</column>
+<column name="grp_pow_generic_double_s_fu_1085">pow_generic_double_s, 72, 72, 0.288 us, 0.288 us, 1, 1, yes</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- VITIS_LOOP_53_1">48780, 48780, 542, -, -, 90, no</column>
+<column name=" + VITIS_LOOP_54_2">540, 540, 6, -, -, 90, no</column>
+<column name="  ++ VITIS_LOOP_63_3">4, 4, 1, -, -, 4, no</column>
+<column name="- VITIS_LOOP_70_4">?, ?, ?, -, -, ?, no</column>
+<column name=" + VITIS_LOOP_76_5">198, 198, 22, -, -, 9, no</column>
+<column name=" + VITIS_LOOP_83_6">?, ?, ?, -, -, 9, no</column>
+<column name="  ++ VITIS_LOOP_92_7">?, ?, ?, -, -, ?, no</column>
+<column name="   +++ VITIS_LOOP_93_8">?, ?, 137 ~ 195, -, -, ?, no</column>
+<column name=" + VITIS_LOOP_109_9">24480, 3304980, 272 ~ 36722, -, -, 90, no</column>
+<column name="  ++ VITIS_LOOP_110_10">270, 36720, 3 ~ 408, -, -, 90, no</column>
+<column name="   +++ VITIS_LOOP_121_11">172, 172, 43, -, -, 4, no</column>
+<column name="   +++ VITIS_LOOP_156_12">12, 172, 3 ~ 43, -, -, 4, no</column>
+<column name=" + PROPAGATION_ROWS">494280, 494280, 5492, -, -, 90, no</column>
+<column name="  ++ PROPAGATION_COLS">5490, 5490, 61, -, -, 90, no</column>
+<column name="   +++ NEIGHBOR_ACCUM">48, 48, 12, -, -, 4, no</column>
+<column name=" + VITIS_LOOP_234_13">48780, 48780, 542, -, -, 90, no</column>
+<column name="  ++ VITIS_LOOP_235_14">540, 540, 6, -, -, 90, no</column>
+<column name="   +++ VITIS_LOOP_236_15">4, 4, 1, -, -, 4, no</column>
+<column name="- VITIS_LOOP_249_16">162180, 162180, 1802, -, -, 90, no</column>
+<column name=" + VITIS_LOOP_250_17">1800, 1800, 20, -, -, 90, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>
