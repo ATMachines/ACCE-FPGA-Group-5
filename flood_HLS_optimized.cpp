@@ -187,7 +187,7 @@ void do_compute(struct parameters *p, struct results *r) {
                             float neighbor_height = p->ground[row_pos][col_pos];
 
                             if (current_height > neighbor_height) {
-                                local_water_loss += FIXED(proportion * (current_height - neighbor_height) / 2);
+                                local_water_loss += proportion * differences[cell_pos] * 0.5f;
                             }
                         }
                     }
