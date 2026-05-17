@@ -149,12 +149,13 @@ void do_compute(struct parameters *p, struct results *r) {
 
                     my_spillage_level = MIN(FLOATING(water_level[row_pos][col_pos]), my_spillage_level);
 
+                    float local_water_loss = 0.0f;
+
                     // Compute proportion of spillage to each neighbor
                     if (sum_diff > 0.0) {
                         float proportion = my_spillage_level / sum_diff;
                         // If proportion is significative, spillage
                         if (proportion > 1e-8) {
-                            float local_water_loss = 0.0f;
                             
                             spillage_flag[row_pos][col_pos] = 1;
                             spillage_level[row_pos][col_pos] = my_spillage_level;
@@ -165,12 +166,10 @@ void do_compute(struct parameters *p, struct results *r) {
                                 new_row = row_pos + displacements[cell_pos][0];
                                 new_col = col_pos + displacements[cell_pos][1];
 
-                                float neighbor_height;
-
                                 // Check if the new position is within the matrix boundaries
                                 if (new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS) {
                                     // Spillage out of the borders: Water loss
-                                    neighbor_height = p->ground[row_pos][col_pos];
+                                    float neighbor_height = p->ground[row_pos][col_pos];
                                     // neighbor_height = accessMat(p->ground, row_pos, col_pos);
                                     if (current_height >= neighbor_height) {
                                         local_water_loss += proportion * (current_height - neighbor_height) * 0.5f;
