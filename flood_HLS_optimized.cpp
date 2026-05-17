@@ -119,11 +119,9 @@ void do_compute(struct parameters *p, struct results *r) {
                 float differences[4];
                 float sum_diff = 0.0f;
                 float my_spillage_level = 0.0f;
-                float proportion = 0.0f;
 
                 /* Differences between current-cell level and its neighbours  */
-                float current_height =
-                    p->ground[row_pos][col_pos] + FLOATING(water_level[row_pos][col_pos]);
+                current_height = p->ground[row_pos][col_pos] + FLOATING(water_level[row_pos][col_pos]);
                     // accessMat(p->ground, row_pos, col_pos) + FLOATING(water_level[row_pos][col_pos]);
 
                 // Iterate over the four neighboring cells using the displacement array
@@ -148,9 +146,9 @@ void do_compute(struct parameters *p, struct results *r) {
                     differences[cell_pos] = (current_height >= neighbor_height) ? (current_height - neighbor_height) : 0.0f;
                 }
                     
-                float sum_diff = differences[0] + differences[1] + differences[2] + differences[3];
+                sum_diff = differences[0] + differences[1] + differences[2] + differences[3];
 
-                float my_spillage_level = MAX(MAX(differences[0], differences[1]), MAX(differences[2], differences[3]));
+                my_spillage_level = MAX(MAX(differences[0], differences[1]), MAX(differences[2], differences[3]));
 
                 my_spillage_level = MIN(FLOATING(water_level[row_pos][col_pos]), my_spillage_level);
 
