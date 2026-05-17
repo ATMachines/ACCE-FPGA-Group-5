@@ -151,7 +151,7 @@ void do_compute(struct parameters *p, struct results *r) {
 
                     my_spillage_level = MIN(FLOATING(water_level[row_pos][col_pos]), my_spillage_level);
 
-                    FIXED proportion = 0.0f;
+                    float proportion = 0.0f;
                     // Compute proportion of spillage to each neighbor
                     if (sum_diff > 0.0) {
                         proportion = my_spillage_level / sum_diff;
@@ -184,10 +184,10 @@ void do_compute(struct parameters *p, struct results *r) {
                         new_col = row_pos + displacements[cell_pos][1];
 
                         if (new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS) {
-                            float neighbor_height = p->ground[row_pos][col_pos];
+                            float boundary_diff = differences[cell_pos];
 
-                            if (current_height > neighbor_height) {
-                                local_water_loss += FIXED(proportion * (current_height - neighbor_height) / 2);
+                            if (boundary_diff > 0.0f) {
+                                local_water_loss += proportion * boundary_diff * 0.5f;
                             }
                         }
                     }
