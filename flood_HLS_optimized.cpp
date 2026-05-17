@@ -118,7 +118,7 @@ void do_compute(struct parameters *p, struct results *r) {
 
                     /* Differences between current-cell level and its neighbours  */
                     fixd current_height =
-                        p->ground[row_pos][col_pos] + FIXD(water_level[row_pos][col_pos]);
+                        FIXD(p->ground[row_pos][col_pos] + water_level[row_pos][col_pos]);
                         // accessMat(p->ground, row_pos, col_pos) + FLOATING(water_level[row_pos][col_pos]);
 
                     // Iterate over the four neighboring cells using the displacement array
@@ -132,11 +132,11 @@ void do_compute(struct parameters *p, struct results *r) {
                         // Check if the new position is within the matrix boundaries
                         if (new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS)
                             // Out of borders: Same height as the cell with no water
-                            neighbor_height = p->ground[row_pos][col_pos];
+                            neighbor_height = FIXD(p->ground[row_pos][col_pos]);
                             // neighbor_height = accessMat(p->ground, row_pos, col_pos);
                         else
                             // Neighbor cell: Ground height + water level
-                            neighbor_height = p->ground[new_row][new_col] + FIXD(water_level[new_row][new_col]);
+                            neighbor_height = FIXD(p->ground[new_row][new_col] + water_level[new_row][new_col]);
                             // neighbor_height = accessMat(p->ground, row_pos, col_pos) + FLOATING(water_level[new_row][new_col]);
 
 
@@ -172,7 +172,7 @@ void do_compute(struct parameters *p, struct results *r) {
                                 // Check if the new position is within the matrix boundaries
                                 if (new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS) {
                                     // Spillage out of the borders: Water loss
-                                    neighbor_height = p->ground[row_pos][col_pos];
+                                    neighbor_height = FIXD(p->ground[row_pos][col_pos]);
                                     // neighbor_height = accessMat(p->ground, row_pos, col_pos);
                                     if (current_height >= neighbor_height) {
                                         r->total_water_loss +=
@@ -180,8 +180,8 @@ void do_compute(struct parameters *p, struct results *r) {
                                     }
                                 } else {
                                     // Spillage to a neighbor cell
-                                    neighbor_height = p->ground[new_row][new_col] +
-                                                      FIXD(water_level[new_row][new_col]);
+                                    neighbor_height = FIXD(p->ground[new_row][new_col] +
+                                                      water_level[new_row][new_col]);
                                     if (current_height >= neighbor_height) {
                                         int depths = CONTIGUOUS_CELLS;
                                         spillage_from_neigh[new_row][new_col][cell_pos] = proportion * (current_height - neighbor_height);
