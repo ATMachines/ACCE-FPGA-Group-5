@@ -23,7 +23,7 @@
 #include "rng.h"
 #include <ap_fixed.h>
 
-typedef ap_fixed<16, 8> fixd;
+typedef ap_fixed<32, 16> fixd;
 
 void do_compute(struct parameters *p, struct results *r) {
 

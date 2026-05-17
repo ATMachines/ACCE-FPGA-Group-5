@@ -73,7 +73,7 @@ static int displacements[CONTIGUOUS_CELLS][2] = {
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 #define SQR(a) ((a) * (a))
 
-typedef ap_fixed<16, 8> fixd;
+typedef ap_fixed<32, 16> fixd;
 
 /*
  * Utils: Macro function to simplify accessing data of 2D and 3D matrixes stored in a flattened array
