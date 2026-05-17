@@ -196,8 +196,8 @@ void do_compute(struct parameters *p, struct results *r) {
 
         float total_water_loss = 0.0f;
 
-        for (rpos = 0; rpos < NROWS; rpos++) {
-            for (cpos = 0; cpos < NCOLS; cpos++) {
+        for (int rpos = 0; rpos < NROWS; rpos++) {
+            for (int cpos = 0; cpos < NCOLS; cpos++) {
                 #pragma HLS PIPELINE II=1
                 total_water_loss += water_loss_buffer[rpos][cpos];
             }
