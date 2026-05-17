@@ -4,6 +4,7 @@
 
 #include <math.h>
 #include <sys/time.h>
+#include <ap_fixed.h>
 
 /*
  * Water levels are stored with fixed preciseon
