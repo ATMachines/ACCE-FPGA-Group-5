@@ -117,7 +117,7 @@ struct results {
     double runtime;
     // Metrics to accumulate fixed point values
     long total_water;
-    long total_water_loss;
+    fixd total_water_loss;
     long total_rain;
 };
 
