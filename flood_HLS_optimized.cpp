@@ -176,22 +176,21 @@ void do_compute(struct parameters *p, struct results *r) {
                                     }
                                 }
                             }
+                        }
+                    }
+                    #pragma HLS UNROLL
+                        for (cell_pos = 0; cell_pos < 4; cell_pos++) {
+                            new_row = row_pos + displacements[cell_pos][0];
+                            new_col = row_pos + displacements[cell_pos][1];
+                            
+                            if (new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS) {
+                                float neighbor_height = p->ground[row_pos][col_pos];
 
-                            #pragma HLS UNROLL
-                            for (cell_pos = 0; cell_pos < 4; cell_pos++) {
-                                new_row = row_pos + displacements[cell_pos][0];
-                                new_col = row_pos + displacements[cell_pos][1];
-
-                                if (new_row < 0 || new_row >= NROWS || new_col < 0 || new_col >= NCOLS) {
-                                    float neighbor_height = p->ground[row_pos][col_pos];
-
-                                    if (current_height > neighbor_height) {
-                                        local_water_loss += (current_height - neighbor_height) * 0.5f;
-                                    }
+                                if (current_height > neighbor_height) {
+                                    local_water_loss += (current_height - neighbor_height) * 0.5f;
                                 }
                             }
                         }
-                    }
                     water_loss_buffer[row_pos][col_pos] = local_water_loss;
                 }
             }
