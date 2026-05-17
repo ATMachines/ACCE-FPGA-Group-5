@@ -70,7 +70,6 @@ void do_compute(struct parameters *p, struct results *r) {
 
     /* Flood simulation (time iterations) */
     for (r->minute = 0; r->minute < p->num_minutes && max_spillage_iter > p->threshold; r->minute++) {
-
         int new_row, new_col;
         int cell_pos;
 
@@ -250,6 +249,7 @@ void do_compute(struct parameters *p, struct results *r) {
                 spillage_level[row_pos][col_pos] = 0;
             }
         }
+    }
 
 
         /* 5. Statistics: Total remaining water and maximum amount of water in a cell */
@@ -270,4 +270,3 @@ void do_compute(struct parameters *p, struct results *r) {
 
         return;
     }
-}
