@@ -190,9 +190,8 @@ void do_compute(struct parameters *p, struct results *r) {
                                     }
                                 }
                             }
-
-                            water_loss_buffer[row_pos][col_pos] = local_water_loss;
                         }
+                        water_loss_buffer[row_pos][col_pos] = local_water_loss;
                     }
                 }
             }
