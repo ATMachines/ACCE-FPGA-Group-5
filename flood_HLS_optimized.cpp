@@ -176,7 +176,7 @@ void do_compute(struct parameters *p, struct results *r) {
                                     }
                                 } else {
                                     // Spillage to a neighbor cell
-                                    neighbor_height = p->ground[new_row][new_col] +
+                                    float neighbor_height = p->ground[new_row][new_col] +
                                                       FLOATING(water_level[new_row][new_col]);
                                     if (current_height >= neighbor_height) {
                                         int depths = CONTIGUOUS_CELLS;
