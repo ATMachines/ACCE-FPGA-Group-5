@@ -32,6 +32,7 @@ void do_compute(struct parameters *p, struct results *r) {
     // float *spillage_from_neigh; // Spillage from each neighbor
 
     int water_level[NROWS][NCOLS];
+    float water_loss_buffer[NROWS][NCOLS];
     float spillage_flag[NROWS][NCOLS];
     float spillage_level[NROWS][NCOLS];
     float spillage_from_neigh[NROWS][NCOLS][CONTIGUOUS_CELLS];
@@ -106,12 +107,13 @@ void do_compute(struct parameters *p, struct results *r) {
         }
         
         /* Step 2: Compute water spillage to neighbor cells */
+        #pragma HLS DEPENDENCE variable=spillage_from_neigh inter false
         for (row_pos = 0; row_pos < NROWS; row_pos++) {
             for (col_pos = 0; col_pos < NCOLS; col_pos++) {
                 #pragma HLS PIPELINE II=1
                 if (water_level[row_pos][col_pos] > 0) {
-                    float sum_diff = 0;
-                    float my_spillage_level = 0;
+                    #pragma HLS ARRAY_PARTITION variable=diffs complete
+                    float differences[4];
 
                     /* Differences between current-cell level and its neighbours  */
                     float current_height =
@@ -119,6 +121,7 @@ void do_compute(struct parameters *p, struct results *r) {
                         // accessMat(p->ground, row_pos, col_pos) + FLOATING(water_level[row_pos][col_pos]);
 
                     // Iterate over the four neighboring cells using the displacement array
+                    #pragma HLS UNROLL 
                     for (cell_pos = 0; cell_pos < CONTIGUOUS_CELLS; cell_pos++) {
                         new_row = row_pos + displacements[cell_pos][0];
                         new_col = col_pos + displacements[cell_pos][1];
@@ -137,12 +140,13 @@ void do_compute(struct parameters *p, struct results *r) {
 
 
                         // Compute level differences
-                        if (current_height >= neighbor_height) {
-                            float height_diff = current_height - neighbor_height;
-                            sum_diff += height_diff;
-                            my_spillage_level = MAX(my_spillage_level, height_diff);
-                        }
+                        diffs[cell_pos] = (current_height >= neighbor_height) ? (current_height - neighbor_height) : 0.0f;
                     }
+                    
+                    float sum_diff = diffs[0] + diffs[1] + diffs[2] + diffs[3];
+
+                    float my_spillage_level = MAX(MAX(diffs[0], diffs[1]), MAX(diffs[2], diffs[3]));
+
                     my_spillage_level = MIN(FLOATING(water_level[row_pos][col_pos]), my_spillage_level);
 
                     // Compute proportion of spillage to each neighbor
@@ -150,6 +154,8 @@ void do_compute(struct parameters *p, struct results *r) {
                         float proportion = my_spillage_level / sum_diff;
                         // If proportion is significative, spillage
                         if (proportion > 1e-8) {
+                            float local_water_loss = 0.0f;
+                            
                             spillage_flag[row_pos][col_pos] = 1;
                             spillage_level[row_pos][col_pos] = my_spillage_level;
 
@@ -167,8 +173,7 @@ void do_compute(struct parameters *p, struct results *r) {
                                     neighbor_height = p->ground[row_pos][col_pos];
                                     // neighbor_height = accessMat(p->ground, row_pos, col_pos);
                                     if (current_height >= neighbor_height) {
-                                        r->total_water_loss +=
-                                            FIXED(proportion * (current_height - neighbor_height) / 2);
+                                        local_water_loss += proportion * (current_height - neighbor_height) * 0.5f;
                                     }
                                 } else {
                                     // Spillage to a neighbor cell
@@ -181,11 +186,24 @@ void do_compute(struct parameters *p, struct results *r) {
                                     }
                                 }
                             }
+
+                            water_loss_buffer[row_pos][col_pos] = local_water_loss;
                         }
                     }
                 }
             }
         }
+
+        float total_water_loss = 0.0f;
+
+        for (rpos = 0; rpos < NROWS; rpos++) {
+            for (cpos = 0; cpos < NCOLS; cpos++) {
+                #pragma HLS PIPELINE II=1
+                total_water_loss += water_loss_buffer[rpos][cpos];
+            }
+        }
+
+        r->total_water_loss = total_water_loss;
 
         /* Step 3: Propagation of previously computer water spillage to/from neighbors */
         max_spillage_iter = 0.0;
